@@ -23,9 +23,9 @@ function calculateTDistribution() {
 document.addEventListener("DOMContentLoaded", function() {
     
     var menuItems = document.querySelectorAll('.menu-item');
+    console.log(menuItems);
     menuItems.forEach( function(item) {
         var subMenu = item.querySelectorAll('.submenu')
-        console.log('count of submenus: ', subMenu.length)
         if (subMenu.length > 0) {
             var icon = document.createElement('i');
             icon.className = 'fa fa-angle-right';
@@ -70,14 +70,3 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     var menuItems = document.querySelectorAll('.menu-item');
-
-//     menuItems.forEach(function(item) {
-//         var submenu = item.querySelector('.submenu');
-//         if (submenu) {
-
-//         }
-//     })
-// })

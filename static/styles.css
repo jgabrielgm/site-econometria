@@ -1,39 +1,89 @@
 :root {
     --main-color-white: #f9f9f9;
     --secundary-color-blue: #3b5998;
+    --secundary-color-grey: #333;
+    --secundary-color-light-grey: #f1f1f1;
     --main-font: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 15px 0;
+    text-align: justify;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+p::selection,
+b::selection,
+a::selection,
+h1::selection,
+h2::selection{
+    background-color: yellow;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+    color: var(--secundary-color-blue);
+}
+
+/* Hover effect to reveal the underline */
+a:hover {
+    visibility: visible;
+    text-decoration: underline;
 }
 
 body {
     font-family: var(--main-font);
-    color: #333;
+    color: var(--secundary-color-grey);
     background-color: var(--main-color-white);
     margin: 0;
     padding: 0;
+    position: relative;
+    width: 100%;
+    height: 100vh;
 }
 
 header {
     background-color: var(--secundary-color-blue);
     color: var(--main-color-white);
-    padding: 10px;
-    text-align: center;
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    width: 68.5%;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .container {
     display: flex;
 }
 
-.side-menu {
-    width: 15rem;
-    background-color: #f1f1f1;
+.container .side-menu {
+    width: 15%;
+    height: 100vh;
+    background-color: var(--secundary-color-light-grey);
+    position: fixed;
+    display: flex;
+    padding-top: 5%;
+    z-index: 0;
 }
 
 .side-menu.left {
-    order: 1;
+    left: 0;
 }
 
 .side-menu.right {
-    order: 3;
+    right: 0;
 }
 
 .side-menu .menu-item{
@@ -42,13 +92,11 @@ header {
 
 /* Importante para que os itens do menu não sejam mostrados quando a página carregar */
 .side-menu .menu-item .submenu{
-    display: none; 
-    width: 85%;
+    display: none;
 }
 
 .side-menu .menu-item .submenu li {
-    font-size: 0.9rem;
-    padding: 0.5rem;
+    padding: 0.7rem;
     height: 100%;
     border: solid black 1px;
 }
@@ -58,12 +106,12 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
-    height: 1.5vh;
+    height: 1rem;
     border-radius: 6px;
-    padding: 8px;
-    width: 55%;
+    padding: 0.8rem;
+    width: max-content;
 }
 
 .side-menu .menu-item .btn-menu-item.active,
@@ -73,15 +121,13 @@ header {
 }
 
 .side-menu .menu-item .fa{
-    margin-right: 0.3rem;
+    margin-right: 0.5rem;
 }
 
 .side-menu ul {
     padding: 0 0 0 1rem;
     list-style: none;
 }
-
-
 
 .side-menu ul li.menu-item {
     padding-top: 0.8rem;
@@ -92,23 +138,25 @@ header {
     text-decoration: none;
 }
 
-main {
-    flex: 1;
-    padding: 20px;
+.container main {
+    flex: 2;
+    margin-top: 3rem;
+    padding: 3% 20%;
     order: 2;
-}
-
-iframe {
     width: 100%;
-    height: 400px;
 }
 
 footer {
     background-color: var(--secundary-color-blue);
     color: var(--main-color-white);
+    display: flex;
     text-align: center;
-    padding: 10px;
-    position: fixed;
+    justify-content: center;
+    padding: 5rem;
     bottom: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: auto;
+    height: auto;
 }

@@ -5,27 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Econometria I</title>
     <link rel="stylesheet" href="..\static\styles.css">
+    <!-- icones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
-
-    <!-- The loading of KaTeX is deferred to speed up page rendering -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script>
-
-    <!-- To automatically render math in text elements, include the auto-render extension: -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+    <!-- formulas e equações -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>      
 </head>
 <body>
     <header>
         <h1>Econometria I</h1>
     </header>
     <div class="container">
-        <nav class="side-menu">
+        <nav class="side-menu left">
             <ul>
                 <li class="menu-item">
-                    Conteúdo da P1
+                    Resumo P1
                     <ul class="submenu">
                         <li><a href="#">Modelo de Regressão Linear</a></li>
                         <li>
@@ -46,31 +40,154 @@
                     </ul>
                 </li>
                 <li class="menu-item">
-                    Conteúdo da P2
+                    Resumo P2
+                </li>
+                <li class="menu-item">
+                    Downloads
+                    <ul class="submenu">
+
+                    </ul>
                 </li>
             </ul>
         </nav>
         <main>
             <section id="introducao">
                 <h2>Povão,</h2>
-                <p>Esse site é uma iniciativa livre dos estudantes de economia do curso de Ciências Ecômicas da UFF feita em parceria com o monitor do curso de Econometria I (noturno) e com o professor <b>Diego Braga</b>.</p>
-                <h3>Conteúdo da P1</h3>
+                <p>O objetivo desse site é nivelar o conhecimento necessário para passar no curso de Econometria I <b>noturno</b> de Ciências Econômicas na UFF. Em alguns momentos, propositalmente, vamos preferir usar uma linguagem mais simples ao invés do jargão estatístico para facilitar a compreensão. Além disso, vamos relembrar alguns conceitos que você talvez não se lembre de estatística I e II.</p>
+                <p>Se você está procurando pelo conteúdo do curso da manhã ou deseja fornecer um feedback, envie um e-mail para <a href="mailto:jggmartins@id.uff.br?subject=Site%20de%20Econometria%20I">jggmartins@id.uff.br</a> (graduando, desenvolvedor do site).</p>
             </section>
             <section id="conteudoP1">
-                <h2>P2</h2>
-                <p></p>
-            </section>
-            <section id="videos">
-                <h2>Videos</h2>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/z-HSsVARNnk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </section>
-            <section id="quizzes">
-                <h2>Quizzes</h2>
-                <!-- Quizzes content here -->
-            </section>
-            <section id="t-distribution">
-                <h2>T-Distribution Calculator</h2>
-                <!-- Calculator content here -->
+                <h2>Resumo P1</h2>
+                <p>Na primeira parte do curso (até a P1), vamos nos restringir a um modelo de regressão com dois coeficientes (\(\beta_0\) e \(\beta_1\)) e uma variável explicativa (\(X_1\)) - modelo de regressão simples. Eu diria que 70% da P1 consiste em conseguir resolver esse problema, não sugiro que você ignore os outros 30%, mas nessa seção vamos tratar de explicar o principal problema da P1.</p>
+
+                <h3>Modelo Simples de Regressão Linear</h3>
+
+                <p>$$Y = \beta_0 + \beta_1X_1 + u$$</p>
+
+                <p>\(Y\) = Variável dependente</p>
+                <p>\(\beta_0\) = Coeficiente do intercepto</p>
+                <p>\(\beta_1\) = Coeficiente da variável explicativa</p>
+                <p>\(X_1\) = Variável explicativa ou variável independente</p>
+                <p>\(u\) = residual/termo de erro</p>
+
+                <p>O exercício consiste em encontrar a melhor variável explicativa para a variável dependente (\(Y\)). Quanto maior a correlação entre as duas variáveis, maior será o valor de \(\beta_1\), ou seja, \(\beta_1\) representa o impacto que uma alteração unitária em \(X_1\) pode causar em \(Y\). Logo, quanto maior \(\beta_1\), maior será a parcela de Y que será explicada pela variável explicativa (\(X_1\)). Por sua vez, o “termo de erro” ou “residual” (\(u\)) serve para representar todo o restante que não pode ser explicado pela variável explicativa e coeficiente de intercepto usados no modelo.</p>
+
+                <p>Porém, nunca conseguimos ter 100% de certeza de que aquele coeficiente (\(\beta_1\)) (por exemplo: 0,81) de fato impacta a variável explicativa (\(Y\)) na magnitude informada, isso porque no mundo real raramente teremos acesso aos dados populacionais, apenas a uma amostra desses dados. Por exemplo, digamos que a variável dependente (\(Y\)) seja o preço da corrida na Uber, e vamos considerar que \(X_1\) seja a distância entre o ponto de partida e o ponto de chegada em Kms. Logo, seria impossível montar um banco de dados com todas as distâncias entre dois pontos do planeta (\(X_1\)) e informar o preço ideal para cada corrida (\(Y\)), esses seriam os dados populacionais.</p>
+
+                <p>Portanto, nosso problema consiste em encontrar o melhor estimador de \(\beta_1\), usando uma amostra aleatória dos dados populacionais do problema.</p>
+
+                <p>Além disso, o curso de Econometria I não visa te ensinar a criar um modelo de regressão simples do zero, nossa tarefa será apenas avaliar a qualidade dos modelos sugeridos pelos exercícios.</p>
+
+                <h3>Teste de Hipótese</h3>
+
+                <p>Testes de hipótese ajudam a determinar se existem evidências suficientes para suportar uma determinada hipótese sobre a população com base nos dados amostrais. Essa hipótese normalmente é chamada de “hipótese alternativa” (\(H_1\)) e a hipótese consolidada sobre a população, ou melhor, o senso comum sobre a população, é chamado de “hipótese nula” (\(H_0\)).</p>
+
+                <p>No nosso caso, na P1, quase sempre a hipótese nula e alternativas serão:</p>
+
+                <p>
+                    $$H_0:\beta_1 = 0 $$
+                    $$H_1:\beta_1 \neq 0$$
+                </p>
+
+                <p>A hipótese nula (senso comum) que pode ser rejeitada, seria, nesse caso: coeficiente da variável explicativa \(\beta_1\) igual a zero. Ou seja, até que se rejeite essa hipótese, a variável explicativa selecionada não tem relação alguma com a variável dependente (Y).</p>
+
+                <p>Existem duas formas de rejeitar a hipótese nula:</p>
+
+                <ul>
+                    <li>1. Usando Estatística-T e Valor Crítico;</li>
+                    <li>2. Usando P-valor e Nível de Significância</li>
+                </ul>
+
+                <p>Vamos começar com a Estatística-T e Valor Crítico</p>
+
+                <h4>1. Estatística-T e Valor Critico</h4>
+
+                <p>Existem muitos “t”s em estatística, antes de começar a explicar a estatística-t gostaria de definir outros conceitos parecidos para que você não se confunda ao longo da leitura. “Estatística-T” ou “Estatística de Teste” <b>>não</b> é a mesma coisa que “Distribuição T” ou “T-Student”. Preste atenção pois os dois conceitos serão usados neste teste de hipótese (1).</p>
+
+                <h5>Valor Crítico</h5>
+
+                <p>Distribuição-T também chamado de T-Student, é um tipo de distribuição parecida com a “normal” - também possui o formato de sino, porém com caldas mais largas (maior variabilidade). Ela é usada no lugar da normal quando a amostra é pequena e o desvio padrão da população é desconhecido (<b>pergunta de P1</b>) (a distribuição normal também é chamada de “distribuição-z”).</p>
+
+                <p>Assumindo que estamos falando de uma amostra que obedece a uma distribuição t, podemos usar a tabela a seguir (tabela-t) para achar o valor crítico. Caso a estatística-t (conceito que vamos explicar a seguir) da amostra seja maior do que o valor crítico, podemos rejeitar a hipótese nula.</p>
+
+                <p>(imagem da tabela-t)</p>
+
+                <p>Contudo, para usar a tabela precisamos dos seguintes dados:</p>
+
+                <ul>
+                    <li>graus de liberdade (\( df \)) (eixo y na imagem)</li>
+                    <li>nível de significância (\( \alpha \)) e tipo de teste (uma calda ou duas caldas) (eixo x na imagem)</li>
+                </ul>
+
+                <p>Graus de liberdade (\(df\)) são diretamente relacionados ao tamanho da amostra que você possui, quanto maior o tamanho da amostra (n) mais a distribuição t se assemelha a distribuição normal. Para calcular os graus de liberdade é muito simples, precisamos subtrair o tamanho da amostra (n) do experimento pelo número de coeficientes do nosso modelo de regressão (k).</p>
+
+                <p>
+                    $$
+                    df=n-k
+                    $$
+                </p>
+
+                <p>Como estamos no modelo simples de regressão linear, “k” será sempre igual a 2. Logo, \(df = n - 2\). Vale lembrar que, novamente, na maioria dos casos, o valor exato de \(df\) não deve constar na tabela-t, nesse caso, você deve considerar o grau de liberdade mais próximo.</p>
+
+                <p>O próximo passo consiste em descobrir o eixo x da tabela-t, para isso precisamos descobrir o nível de significância (\( \alpha \)), que normalmente é fornecido pelo exercício e, caso não seja informado, podemos considerar \( \alpha \) = 5% ou 0,05. Quando um pesquisador estabelece esse nível de significância, ele está dizendo que há uma chance de 5% de rejeitar a hipótese nula quando ela é verdadeira (ou seja, quando o coeficiente populacional de fato é igual a zero).</p>
+
+                <p>Obs: Na primeira prova, também não precisamos nos preocupar com falsos positivos e falsos negativos (erro do tipo I e erro do tipo II, respectivamente), por isso vamos explica-los no Resumo P2.</p>
+
+                <p>Agora, só falta descobrir se estamos falando de um <b>teste de uma ou duas caldas</b>. Povão, isso é simples, se a hipótese alternativa for \(H_a:\beta_1<0\) ou \(H_a:\beta>0\) então esse é um teste <b>unicaldal</b>. Se a hipótese alternativa for \(H_a:\beta_1 \neq 0\) então esse teste é bicaldal. Quando estamos em um teste de duas caldas (maioria dos casos), precisamos dividir o nível de significância (\( \alpha \)) por dois (2) para encontrar o nível de significância na tabela-t. Logo, no nosso exemplo, vamos precisar dividir 0,05 por 2 (0,025).</p>
+
+                <p>Agora basta traçar uma linha reta entre o \(df\) e nível de significância (\( \alpha \)) na tabela-t para encontrar o valor crítico.</p>
+
+                <h5>Estatística-T ou T-valor</h5>
+
+                <p>Existem duas fórmulas para calcular a estatística t. Vamos precisar mostrar as duas fórmulas para entender a definição de estatística t:</p>
+
+                <p>
+                    $$
+                    t_{\beta_1}=\frac{\hat{\beta_1}-\beta_1}{SE}
+                    $$
+                    ou
+                    $$
+                    t_{\beta_1}=\frac{\hat{\beta_1}-\beta_1}{s}
+                    $$
+                </p>
+
+                <p>t = estatística t</p>
+
+                <p>\(\hat{\beta_1}\) = coeficiente amostral (hipótese alternativa)</p>
+
+                <p>\(\beta_1\)= coeficiente populacional (hipótese nula)</p>
+
+                <p>\(SE\) = standard error (erro padrão)</p>
+
+                <p>\(s\) = desvio padrão amostral</p>
+
+                <p>Vamos abrir um parênteses aqui para explicar:</p>
+
+                <p>(1) erro padrão (\(SE\)), nesse contexto, pode ser definido como a diferença de uma estatística - o coeficiente \(\hat{\beta_1}\), no nosso exemplo, de uma amostra para a outra de uma mesma população dado a aleatoriedade da variabilidade das amostras. Quanto maior o tamanho da amostra e menor a variabilidade entre as observações da amostra, portanto, menor o erro padrão. Segue a fórmula do erro padrão: \(SE = \frac{s}{\sqrt{n}}\)</p>
+
+                <p>(2) desvio padrão amostral (\(s\)), nesse contexto, pode ser definido como a medida de dispersão dos coeficientes estimados das diferentes amostras da mesma população. Ou seja, o desvio padrão é uma medida de “dispersão” e o erro padrão é uma medida de “precisão”.</p>
+
+                <p>Fechando parênteses.</p>
+
+                <p>Se estamos usando a primeira fórmula, essa estatística estabelece quantos erros padrão (SE) o coeficiente amostral estimado (\(\hat{\beta_1}\)) se distância do coeficiente populacional (\(\beta_1\)), porém, no nosso teste de hipótese, \(\beta_1=0\) (hipótese nula). Logo, quanto maior a diferença entre o estimador do coeficiente amostral (\(\hat{\beta_1}\)) e a hipótese nula e quanto menor o erro padrão (SE), maior será a estatística t, o que indica que a chance desse resultado ser um fruto do mero acaso é menor.</p>
+
+                <p>Se estamos usando a segunda fórmula, essa estatística estabelece quantos desvio padrão (s) o coeficiente amostral estimado (\(\hat{\beta_1}\)) se distância do coeficiente populacional (\(\beta_1\)), porém, no nosso teste de hipótese, \(\beta_1=0\) (hipótese nula). Logo, quanto maior a diferença entre o estimador do coeficiente amostral (\(\hat{\beta_1}\)) e a hipótese nula e quanto menor o desvio padrão (s), maior será a estatística t, o que indica que a chance desse resultado ser um fruto do mero acaso é menor.</p>
+
+                <p>Voltando para a definição de estatística t, ambos os casos são validos, porém com interpretações ligeiramente diferentes. Normalmente, vamos usar o primeiro o caso (SE).</p>
+
+                <p>Finalmente,</p>
+
+                <p>Com a estatística t e o valor crítico, basta validar se a estatística t em <b>termos absolutos</b> (ex: |-2,534| = 2,534) do coeficiente amostral é maior do que o valor crítico obtido na tabela, se for o caso, você pode rejeitar a hipótese nula.</p>
+
+                <p>Agora, vamos resolver o mesmo problema usando o p-valor e intervalo de confiança.</p>
+
+                <h4>2. P-valor e Nível de Significância</h4>
+
+                <p>P-valor representa uma probabilidade condicional (varia entre 0 a 1): dado que a hipótese nula é verdadeira, qual é a probabilidade do resultado amostral representar a população? Logo, se a hipótese nula for verdadeira, quanto menor o p-valor mais improvável será a observação do resultado da amostra. Um p-valor alto estaria confirmando a hipótese nula, em outras palavras, dado que a hipótese nula é verdade, esse resultado tem grande chance de ser observado na população. O p-valor ajuda pesquisadores a quantificar a força das suas evidências contra a hipótese nula. Se o p-valor for menor ou igual do que o nível de significância estabelecido pelo experimento (geralmente, 5%), podemos rejeitar a hipótese nula. No nosso contexto, o p-valor dificilmente será calculado, normalmente, ele será fornecido, você só precisa interpretar o resultado. Por exemplo, se o p-valor do estimador de um coeficiente (\(\hat{\beta_1}\)) for menor do que 0.0001 existe grande chance do seu coeficiente representar uma grande correlação com a variável explicativa - em outras palavras, rejeitar a hipótese nula (\(\beta_1=0\)).</p>
+
+                <p>Caso ainda precise de mais detalhes sobre o p-valor, assista o vídeo a seguir:</p>
+
+                <iframe width="100%" height="515" src="https://www.youtube.com/embed/z-HSsVARNnk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </section>
         </main>
         <aside class="side-menu right">
