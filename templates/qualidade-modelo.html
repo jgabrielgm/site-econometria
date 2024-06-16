@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="qualidade-modelo">
+                    
+
+        ## Qualidade do Modelo de Regressão Simples
+
+        Ta beleza, povão? (Se tiver achado alguma parte confusa, envie um e-mail para gente)
+
+        Nesta seção vamos explicar como podemos avaliar a qualidade do modelo de regressão. Preste atenção pois essa matéria também faz parte daqueles “70%” da P1.
+
+        Vamos começar explicando o coeficiente de determinação ($R^2$):
+
+        ### Coeficiente de Determinação ($R^2$)
+
+        O coeficiente de determinação mensura quão bem a variável independente (X) explica a variação na variável dependente (Y), dentro de uma determinada **amostra** (esse detalhe é importante para entender a estatística F). Essa estatística indica a proporção da variação na variável dependente (Y) que é explicada pela variável explicativa (X). Seu valor varia entre 0 e 1. 0 indica que a variável explicativa (X) não explica a variação na variável dependente (Y), e 1.
+
+        O $R^2$ é medido dentro do contexto da amostra, ou seja, amostras diferentes da mesma população podem resultar em coeficientes de determinação diferentes, mas servem como estimadores do $R^2$ populacional. Quanto maior o R ao quadrado, mais o modelo de regressão simples consegue explicar o que acontece com a variável dependente dentro da população.
+
+        Nesse caso, como estamos falando de um modelo de regressão simples - com uma unica variável explicativa, o coeficiente de determinação ($R^2$) servirá bem esse propósito. Por sua vez, existem uma situção em que o coeficiente de determinação não é recomendado:
+
+        - Quando queremos comparar a qualidade de dois modelos de regressão com quantidades diferentes de variaveis explicativas (X), como por exemplo, um modelo de regressão simples e um modelo de regressão múltiplo.
+
+        Isso acontece pois sempre que aumentamos o número de variaveis explicativas (k), o $R^2$ será positivamente impactado, mesmo que as variaveis explicativas (X) adicionadas não ajudem a explicar a variação da variável dependente (Y).
+
+        Obs: Na P1, não precisamos “ajustar” o coeficiente de determinação. Vamos “ajustar” o R ao quadrado pela “quantidade de variaveis explicativas” (ou k) na seção de Resumo P2.
+
+        Segue a fórmula de calculo do $R^2$:
+
+        $$
+        R^2=1-\frac{SQR}{SQT} \\ ou \\ R^2=\frac{SQE}{SQT}
+        $$
+
+        $R^2$ = coeficiente de determinação;
+
+        $SQT$ = soma total dos quadrados da variável dependente (y) (SST em inglês) - soma da diferença entre o valor observado de $y$ e a sua média amostral $\bar{y}$ ao quadrado;
+
+        $SQE$ = soma dos quadrados **explicados** pelo modelo de regressão (SSR em inglês) - soma da diferença entre o valor estimado pelo modelo de regressão $\hat{y}$ para aquela observação e a média amostral $\bar{y}$ ao quadrado;
+
+        $SQR$ = soma dos quadrados dos **resíduos** da variável dependente (y) ou soma dos quadrados dos erros (SSE em inglês) - soma da diferença entre o valor observado de y e o valor estimado pelo modelo $\hat{y}$ ao quadrado.
+
+        A fórmula é simples, porém, o que essa razão representa na prática?
+
+        O SQR representa a variabilidade de Y que não pode ser explicada pelas variáveis explicativas do modelo - o residual (u), portanto, quanto maior o SQR relativamente ao SQT, maior será a proporção da variação da variável dependente (Y) que **não** pode ser explicada pelo modelo de regressão. Essa razão “menos 1” fornece quanto a variabilidade total da variável dependente (Y) é explicada pelas variaveis explicativas do modelo. 
+
+        Vamos aproveitar para entender os conceitos adjacentes a $R^2$, os “SQs”.
+
+        ### Decomposição da Soma Total dos Quadrados (”SQs”)
+
+        No contexto do modelo de regressão, os “SQs” são um conjunto de estatísticas que ajudam a medir a efetividade do modelo de regressão. Sempre serão calculados com base nas observações das variaveis dependentes ($y$) da amostra.
+
+        A fórmula do Coeficiente de Determinação ($R^2$) está intimamente ligada ao SQT, portanto, os dois possuem interpretações parecidas. Porém, diferente do $R^2$ que está preocupado em explicar a proporção da variável dependente que é explicada pelo modelo de regressão, o SQT está preocupado em determinar a variação total da variável dependente (y) que precisa ser explicada pelo modelo de regressão. Como você pode ver na fórmula abaixo, o SQT pode ser calculado pela soma de SQE e SQR, onde SQE representa a variação que pode ser explicada pelo modelo de regressão e SQR representa a parte que não pode ser explicada pelo modelo - o residual (u).
+
+        $$
+        SQT=SQE+SQR
+        $$
+
+        - Soma Total dos Quadrados (SQT)
+
+        Se por acaso for necessário calcular o SQT usando as observações da amostra (isso não costuma acontecer), sem usar a fórmula acima, ela pode ser calculado pela soma da diferença das variaveis dependentes ($y$) em relação a sua média ($\bar{y}$) elevado ao quadrado:
+
+        $$
+        SQT = \sum^n_{i=1}(y_i-\bar{y})^2
+        $$
+
+        Logo, quanto maior o SQT, maior a variabilidade da amostra em relação a média. Portanto, o SQT pode variar de 0 (zero) a mais infinito. 
+
+        Imagine um “gráfico de bolinhas” (scatter chart) com as variaveis dependentes ($y$), agora desenhe uma linha horizontal que representa a média das variaveis dependentes da amostra ($\bar{y}$). A distância de cada observação para essa linha horizontal representa a variação total dos dados (SQT).
+
+        - Soma dos Quadrados Explicada pela Regressão (SQE)
+
+        Quantifica quanto da variação total de $y$ é capturada pelo modelo de regressão.
+
+        $$
+        SQE=∑^n_{i=1}(\hat{y}_i−\bar{y})^2
+        $$
+
+        Um SQE maior relativo ao SQT sugere um modelo mais ajustado. Talvez você não tenha entendido o valor de $\hat{y}_i$, mas ele é calculado para cada linha da sua tabela (amostra) usando o valor de $x_1$ e o modelo de regressão criado: $\hat{y}_i=\beta_0+\beta_1x_i$.
+
+        A distância de cada ponto de dados da linha do modelo de regressão representa a variação que não é explicada pelo modelo - o residual (SQR).
+
+        - Soma dos Quadrados dos Resíduos (SQR)
+
+        Quantifica a variabilidade total de $y$ que não é explicada pelo modelo de regressão.
+
+        $$
+        SQE=∑^n_{i=1}(y_i-\hat{y}_i)^2
+        $$
+
+        Um SQR maior sugere um encaixe **menor** do modelo de regressão com os dados da amostra.
+
+        A distância da linha de regressão e a linha de média representa a variação que é explicada pelo modelo (SQE).
+    </section>
+</body>
+</html>

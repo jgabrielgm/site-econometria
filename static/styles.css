@@ -6,6 +6,10 @@
     --main-font: 'Roboto', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -18,11 +22,17 @@ p {
     font-size: 16px;
 }
 
-p::selection,
-b::selection,
-a::selection,
-h1::selection,
-h2::selection{
+main p::selection,
+main b::selection,
+main a::selection,
+main h1::selection,
+main h2::selection,
+main h3::selection,
+main h4::selection,
+main h5::selection,
+main h6::selection,
+main ul::selection,
+main li::selection{
     background-color: yellow;
     color: black;
 }
@@ -74,7 +84,7 @@ header {
     background-color: var(--secundary-color-light-grey);
     position: fixed;
     display: flex;
-    padding-top: 5%;
+    padding-top: 2%;
     z-index: 0;
 }
 
@@ -87,7 +97,7 @@ header {
 }
 
 .side-menu .menu-item{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 /* Importante para que os itens do menu não sejam mostrados quando a página carregar */
@@ -96,9 +106,9 @@ header {
 }
 
 .side-menu .menu-item .submenu li {
-    padding: 0.7rem;
+    padding: 0.4rem;
     height: 100%;
-    border: solid black 1px;
+    /* border: solid black 1px; */
 }
 
 .side-menu .menu-item .btn-menu-item{
@@ -110,12 +120,15 @@ header {
     align-items: center;
     height: 1rem;
     border-radius: 6px;
-    padding: 0.8rem;
+    padding: 0.5rem;
     width: max-content;
+    gap: 4px;
 }
 
 .side-menu .menu-item .btn-menu-item.active,
-.side-menu .menu-item .btn-menu-item:hover {
+.side-menu .menu-item .btn-menu-item:hover,
+.side-menu .menu-item .btn-menu-item.active a,
+.side-menu .menu-item .btn-menu-item:hover a{
     background-color: var(--secundary-color-blue);
     color: var(--main-color-white);
 }
@@ -144,6 +157,16 @@ header {
     padding: 3% 20%;
     order: 2;
     width: 100%;
+}
+
+.justified-list {
+    padding: 0;
+    margin: 0;
+    list-style-position: inside;
+}
+
+.list-number{
+    list-style-type: decimal;
 }
 
 footer {
