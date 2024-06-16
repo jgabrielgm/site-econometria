@@ -23,7 +23,7 @@
                     <ul class="submenu">
                         <li><a href="#regressao-simples">Regressão Simples</a></li>
                         <li><a href="#teste-hipotese">Teste de Hipótese</a></li>
-                        <li><a href="#">Qualidade do Modelo</a></li>
+                        <li><a href="#qualidade-modelo">Qualidade do Modelo</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
@@ -141,7 +141,7 @@
                     <p>Com a estatística t e o valor crítico, basta validar se a estatística t em <b>termos absolutos</b> (ex: |-2,534| = 2,534) do coeficiente amostral é maior do que o valor crítico obtido na tabela, se for o caso, você pode rejeitar a hipótese nula.</p>
                     <p>Agora, vamos resolver o mesmo problema usando o p-valor e intervalo de confiança.</p>
 
-                    <h4>2. P-valor e Nível de Significância \(\alpha\)</h4>
+                    <h4>2. P-valor e Nível de Significância (\(\alpha\))</h4>
                     <p>P-valor representa uma probabilidade condicional (varia entre 0 a 1): dado que a hipótese nula é verdadeira, qual é a probabilidade do resultado amostral representar a população? Logo, se a hipótese nula for verdadeira, quanto menor o p-valor mais improvável será a observação do resultado da amostra. Um p-valor alto estaria confirmando a hipótese nula, em outras palavras, dado que a hipótese nula é verdade, esse resultado tem grande chance de ser observado na população. O p-valor ajuda pesquisadores a quantificar a força das suas evidências contra a hipótese nula. Se o p-valor for menor ou igual do que o nível de significância estabelecido pelo experimento (geralmente, 5%), podemos rejeitar a hipótese nula. Por exemplo, se o p-valor do estimador de um coeficiente (\(\hat{\beta_1}\)) for menor do que 0.0001 existe grande chance do seu coeficiente representar uma grande correlação com a variável explicativa - em outras palavras, rejeitar a hipótese nula (\(\beta_1=0\)).</p>
                     <p>Caso ainda precise de mais detalhes sobre o p-valor, assista o vídeo a seguir:</p>
                     <iframe width="100%" height="515" src="https://www.youtube.com/embed/z-HSsVARNnk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -163,12 +163,12 @@
                     </ul>
                     <p>Obs (passo 2): Caso a estatística-t seja muito alta, digamos 5, dificilmente a tabela-t conterá um valor crítico próximo a esse número dados os graus de liberdade (\(df\)), portanto, você pode assumir que o p-valor é muito pequeno. Repare que os valores críticos a direita da coluna são maiores e estão associados a níveis de significância mais baixos.</p>
 
-                    <h4>3. Intervalo de Confiança (CI) e Valor Crítico \(t^*\)</h4>
+                    <h4>3. Intervalo de Confiança (CI) e Valor Crítico (\(t^*\))</h4>
                     <p>O intervalo de confiança (CI) estabelece o intervalo em que a hipótese nula de $\beta_1$ deve estar para que seja aceita, dado o nível de significância estabelecido (5%). Como no nosso exemplo a hipótese nula será sempre: \(H_0:{\beta_1}=0\), caso o intervalo de confiança (CI) não contenha 0 (zero), podemos rejeitar a hipótese nula.</p>
                     <p>CI pode ser calculado usando a seguinte fórmula:</p>
                     <p>
                         $$
-                        CI = \hat{\beta_1}\plusmn t^* * SE(\hat{\beta_1})
+                        CI = \hat{\beta_1}\pm t^* * SE(\hat{\beta_1})
                         $$
                     </p>
                     <p>\(\hat{\beta_1}\) = estimador do coeficiente de inclinação do modelo de regressão (hipótese alternativa)</p>
@@ -183,21 +183,101 @@
                     </ul>
                     <p>Passo-a-passo:</p>
                     <p>1. Com isso, podemos calcular o valor crítico na tabela-t:</p>
-                    <p>Para o nível de significância de 5% (como ele não foi informado, podemos assumir $\alpha=5\%$) e graus de liberdade \(df = n - k - 1 = 30 - 1 - 1 = 28\), o valor crítico (\(t^*\)) na tabela-t seria de 2,048.</p>
+                    <p>Para o nível de significância de 5% (como ele não foi informado, podemos assumir \(\alpha=5\%\)) e graus de liberdade \(df = n - k - 1 = 30 - 1 - 1 = 28\), o valor crítico (\(t^*\)) na tabela-t seria de 2,048.</p>
                     <p>2. Agora, basta substituir na fórmula:</p>
                     <p>
                         $$
-                        CI = \hat{\beta_1}\plusmn t^* * SE(\hat{\beta_1}) \ CI =2,5 \plusmn2,048*0,5 \ CI = 2,5 \plusmn1,024 \ CI = (1,476;3,524)
+                            CI = \hat{\beta_1} \pm t^* * SE(\hat{\beta_1})
+                        $$
+                        $$
+                            CI =2,5 \pm 2,048*0,5
+                        $$
+                        $$
+                            CI = 2,5 \pm1,024
+                        $$
+                        $$
+                            CI = (1,476;3,524)
                         $$
                     </p>
                     <p>Interpretação:</p>
                     <ul class="justified-list">
-                        <li>Para o nível de significância de 5%, o intervalo de confiança de \(\beta_1\) é (1,476;3,524).</li>
-                        <li>Como o intervalo não contém zero, podemos rejeitar a hipótese nula \(H_0:{\beta_1}=0\) ao nível de significância de 5%.</li>
-                        <li>Isso indica que o \(\beta_1\) é significativamente diferente de zero, sugerindo que a relação entre a variável explicativa (\(X_1\)) associada a \(\beta_1\) e a variável dependente (\(Y\)) possui significância estatística.</li>
+                        <li>Para o nível de significância de 5%, o intervalo de confiança de \(\beta_1\) é (1,476;3,524).</li><br>
+                        <li>Como o intervalo não contém zero, podemos rejeitar a hipótese nula \(H_0:{\beta_1}=0\) ao nível de significância de 5%.</li><br>
+                        <li>Isso indica que o \(\beta_1\) é significativamente diferente de zero, sugerindo que a relação entre a variável explicativa (\(X_1\)) associada a \(\beta_1\) e a variável dependente (\(Y\)) possui significância estatística.</li><br>
                     </ul>
                 </section>
-                
+                <section id="qualidade-modelo">
+                    <h3>Qualidade do Modelo de Regressão Simples</h3>
+                    <p>Ta beleza, povão? (Se tiver achado alguma parte confusa, envie um e-mail para gente)</p>
+                    <p>Nesta seção vamos explicar como podemos avaliar a qualidade do modelo de regressão. Preste atenção pois essa matéria também faz parte daqueles “70%” da P1.</p>
+                    <p>Vamos começar explicando o coeficiente de determinação (\(R^2\)):</p>
+
+                    <h4>Coeficiente de Determinação (\(R^2\))</h4>
+                    <p>O coeficiente de determinação mensura quão bem a variável independente (X) explica a variação na variável dependente (Y), dentro de uma determinada <b>amostra</b> (esse detalhe é importante para entender a estatística F). Essa estatística indica a proporção da variação na variável dependente (Y) que é explicada pela variável explicativa (X). Seu valor varia entre 0 e 1. 0 indica que a variável explicativa (X) não explica a variação na variável dependente (Y), e 1.</p>
+                    <p>O \(R^2\) é medido dentro do contexto da amostra, ou seja, amostras diferentes da mesma população podem resultar em coeficientes de determinação diferentes, mas servem como estimadores do \(R^2\) populacional. Quanto maior o R ao quadrado, mais o modelo de regressão simples consegue explicar o que acontece com a variável dependente dentro da população.</p>
+                    <p>Nesse caso, como estamos falando de um modelo de regressão simples - com uma unica variável explicativa, o coeficiente de determinação (\(R^2\)) servirá bem esse propósito. Por sua vez, existem uma situção em que o coeficiente de determinação não é recomendado:</p>
+                    <p>Quando queremos comparar a qualidade de dois modelos de regressão com quantidades diferentes de variaveis explicativas (X), como por exemplo, um modelo de regressão simples e um modelo de regressão múltiplo.</p>
+                    <p>Isso acontece pois sempre que aumentamos o número de variaveis explicativas (k), o \(R^2\) será positivamente impactado, mesmo que as variaveis explicativas (X) adicionadas não ajudem a explicar a variação da variável dependente (Y).</p>
+                    <p>Obs: Na P1, não precisamos “ajustar” o coeficiente de determinação. Vamos “ajustar” o R ao quadrado pela “quantidade de variaveis explicativas” (ou k) na seção de Resumo P2.</p>
+                    <p>Segue a fórmula de calculo do \(R^2\):</p>
+                    <p>
+                        $$
+                            R^2=1-\frac{SQR}{SQT}
+                        $$
+                        ou
+                        $$
+                            R^2=\frac{SQE}{SQT}
+                        $$
+                    </p>
+                    <p>\(R^2\) = coeficiente de determinação;</p>
+                    <p>\(SQT\) = soma total dos quadrados da variável dependente (y) (SST em inglês) - soma da diferença entre o valor observado de y e a sua média amostral \(\bar{y}\) ao quadrado;</p>
+                    <p>\(SQE\) = soma dos quadrados <b>explicados</b> pelo modelo de regressão (SSR em inglês) - soma da diferença entre o valor estimado pelo modelo de regressão \(\hat{y}\) para aquela observação e a média amostral \(\bar{y}\) ao quadrado;</p>
+                    <p>\(SQR\) = soma dos quadrados dos <b>resíduos</b> da variável dependente (y) ou soma dos quadrados dos erros (SSE em inglês) - soma da diferença entre o valor observado de y e o valor estimado pelo modelo \(\hat{y}\) ao quadrado.</p>
+                    <p>A fórmula é simples, porém, o que essa razão representa na prática?</p>
+                    <p>O SQR representa a variabilidade de Y que não pode ser explicada pelas variáveis explicativas do modelo - o residual (u), portanto, quanto maior o SQR relativamente ao SQT, maior será a proporção da variação da variável dependente (Y) que <b>não</b> pode ser explicada pelo modelo de regressão. Essa razão “menos 1” fornece quanto a variabilidade total da variável dependente (Y) é explicada pelas variaveis explicativas do modelo.</p>
+                    <p>Vamos aproveitar para entender os conceitos adjacentes a \(R^2\), os “SQs”.</p>
+
+                    <h4>Decomposição da Soma Total dos Quadrados (”SQs”)</h4>
+                    <p>No contexto do modelo de regressão, os “SQs” são um conjunto de estatísticas que ajudam a medir a efetividade do modelo de regressão. Sempre serão calculados com base nas observações das variaveis dependentes (\(y\)) da amostra.</p>
+            
+                    <p>A fórmula do Coeficiente de Determinação (\(R^2\)) está intimamente ligada ao SQT, portanto, os dois possuem interpretações parecidas. Porém, diferente do \(R^2\) que está preocupado em explicar a proporção da variável dependente que é explicada pelo modelo de regressão, o SQT está preocupado em determinar a variação total da variável dependente (y) que precisa ser explicada pelo modelo de regressão. Como você pode ver na fórmula abaixo, o SQT pode ser calculado pela soma de SQE e SQR, onde SQE representa a variação que pode ser explicada pelo modelo de regressão e SQR representa a parte que não pode ser explicada pelo modelo - o residual (u).</p>
+                    <p>
+                        $$
+                        SQT=SQE+SQR
+                        $$
+                    </p>
+                    <ul class="justified-list">
+                        <li>Soma Total dos Quadrados (SQT)</li><br>
+                        <p>Se por acaso for necessário calcular o SQT usando as observações da amostra (isso não costuma acontecer), sem usar a fórmula acima, ela pode ser calculado pela soma da diferença das variaveis dependentes (\(y\)) em relação a sua média (\(\bar{y}\)) elevado ao quadrado:</p>
+                        <p>
+                            $$
+                                SQT = \sum^n_{i=1}(y_i-\bar{y})^2
+                            $$
+                        </p>
+                        <p>Logo, quanto maior o SQT, maior a variabilidade da amostra em relação a média. Portanto, o SQT pode variar de 0 (zero) a mais infinito. </p>
+                        <p>Imagine um “gráfico de bolinhas” (scatter chart) com as variaveis dependentes (\(y\)), agora desenhe uma linha horizontal que representa a média das variaveis dependentes da amostra (\(\bar{y}\)). A distância de cada observação para essa linha horizontal representa a variação total dos dados (SQT).</p>
+
+                        <li>Soma dos Quadrados Explicada pela Regressão (SQE)</li>
+                        <p>Quantifica quanto da variação total de \(y\) é capturada pelo modelo de regressão.</p>
+                        <p>
+                            $$
+                                SQE=\sum^n_{i=1}(\hat{y}_i - \bar{y})^2
+                            $$
+                        </p>
+                        <p>Um SQE maior relativo ao SQT sugere um modelo mais ajustado. Talvez você não tenha entendido o valor de \(\hat{y}_i\), mas ele é calculado para cada linha da sua tabela (amostra) usando o valor de \(x_1\) e o modelo de regressão criado: \(\hat{y}_i=\beta_0+\beta_1x_i\).</p>
+                        <p>A distância de cada ponto de dados da linha do modelo de regressão representa a variação que não é explicada pelo modelo - o residual (SQR).</p>
+
+                        <li>Soma dos Quadrados dos Resíduos (SQR)</li>
+                        <p>Quantifica a variabilidade total de \(y\) que não é explicada pelo modelo de regressão.</p>
+                        <p>
+                            $$
+                                SQE=\sum^n_{i=1}(y_i-\hat{y}_i)^2
+                            $$
+                        </p>
+                        <p>Um SQR maior sugere um encaixe <b>menor</b> do modelo de regressão com os dados da amostra.</p>
+                        <p>A distância da linha de regressão e a linha de média representa a variação que é explicada pelo modelo (SQE).</p>
+                    </ul>
+                </section>
             </section>
         </main>
         <aside class="side-menu right">
