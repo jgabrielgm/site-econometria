@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // forces to scroll to the top of the website every time it loads
+    document.documentElement.scrollTop = 0; // For most browsers
+    document.body.scrollTop = 0; // Safari
+
     var menuItems = document.querySelectorAll('.menu-item');
     menuItems.forEach( function(item) {
         var subMenu = item.querySelectorAll('.submenu')
@@ -19,61 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
             link.appendChild(span);
         };
     });
-
-    function getElementPosition(element) {
-        const rect = element.getBoundingClientRect();
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const top = (rect.top + scrollTop).toFixed(2);
-        const bottom = (rect.bottom + scrollTop).toFixed(2);
-        return {
-            top: Number(top),
-            bottom: Number(bottom)
-        };
-    };
-
-    function getCenterPosition() {
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-        const scrollY = window.scrollY || document.documentElement.scrollTop;
-        const center = (scrollY + (windowHeight / 2)).toFixed(2)
-        return Number(center);
-    };
-
-    function setActiveMenu() {
-        let center_position = getCenterPosition();
-        // console.log(center_position);
-        var main_sections = document.querySelectorAll('main > section');
-        // for (let i = 0; i < main_sections.length; i++) {
-        main_sections.forEach( function(item) {
-            let rect = getElementPosition(item);
-            if (rect.bottom >= center_position && rect.top <= center_position) {
-                var hrefId = item.id;
-                var span_btn = document.querySelector(`a[href="#${hrefId}"]`).children[0];
-                span_btn.classList.add('active');
-            } else {
-                var remove_id = item.id;
-                var remove_btn = document.querySelector(`a[href="#${remove_id}"]`);
-                if (remove_btn !== null) {
-                    remove_btn.children[0].classList.remove('active');
-                }
-            }
-        });
-        // let currentActive = null;
-        
-        // main_sections.forEach( function(section) {
-        //     let rect = getElementPosition(section);
-        //     let center_position = getCenterPosition().centerY2;
-        //     console.log('center_position', center_position);
-        //     console.log('top', rect.top, 'bottom', rect.bottom)
-        //     if (rect.top >= center_position && rect.bottom <= center_position) {
-        //         currentActive = section;
-        //         console.log(currentActive);
-        //     }
-        // });
-    };
-    
-    // var spans_btn_menu_item = document.querySelectorAll('.menu-item .btn-menu-item');
-    // Add scroll event listener to the window
-    window.addEventListener('scroll', setActiveMenu );
 
     // intera por cada .menu-item
     menuItems.forEach( function(item) {
@@ -100,4 +49,63 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     });
+
+    function getElementPosition(element) {
+        const rect = element.getBoundingClientRect();
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const top = (rect.top + scrollTop).toFixed(2);
+        const bottom = (rect.bottom + scrollTop).toFixed(2);
+        return {
+            top: Number(top),
+            bottom: Number(bottom)
+        };
+    };
+
+    function getCenterPosition() {
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        const center = (scrollY + (windowHeight / 2)).toFixed(2)
+        return Number(center);
+    };
+
+    function setActiveMenu() {
+        let center_position = getCenterPosition();
+        var main_sections = document.querySelectorAll('main > section');
+        main_sections.forEach( function(item) {
+            let rect = getElementPosition(item);
+            let hrefId = item.id;
+            let a_link = document.querySelector(`a[href="#${hrefId}"]`);
+            let span_btn = a_link.children[0];
+            if (span_btn !== undefined) {
+                let i_fa = span_btn.children[0];
+                let ul_submenu = a_link.nextElementSibling;
+                if (rect.bottom >= center_position 
+                    && rect.top <= center_position ) {
+                    span_btn.classList.add('active');
+                    ul_submenu.style.display = 'block';
+                    i_fa.className = 'fa fa-angle-down';
+                    const sub_sections = Array.from(item.querySelectorAll('section'));
+                    sub_sections.shift();
+                    sub_sections.forEach( function(section) {
+                        let hrefId_subsection = section.id;
+                        let li_submenu_subsection = document.querySelector(`a[href="#${hrefId_subsection}"]`).parentElement;
+                        let rect_subsection = getElementPosition(section);
+                        let center_position_subsection = getCenterPosition();
+                        if (rect_subsection.bottom >= center_position_subsection 
+                            && rect_subsection.top <= center_position_subsection) {
+                            li_submenu_subsection.classList.add('active-bold');
+                            }
+                        else {
+                            li_submenu_subsection.classList.remove('active-bold');
+                        }
+                    });
+                } else {
+                    span_btn.classList.remove('active');
+                    ul_submenu.style.display = 'none';
+                    i_fa.className = 'fa fa-angle-right';
+                }
+            }
+        });
+    };
+    window.addEventListener('scroll', setActiveMenu );
 });

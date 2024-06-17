@@ -108,7 +108,11 @@ header {
 .side-menu .menu-item .submenu li {
     padding: 0.4rem;
     height: 100%;
-    /* border: solid black 1px; */
+}
+
+.side-menu .menu-item .submenu li:hover,
+.side-menu .menu-item .submenu li.active-bold{
+    font-weight: bold;
 }
 
 .side-menu .menu-item .btn-menu-item{
