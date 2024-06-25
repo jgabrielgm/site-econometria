@@ -60,6 +60,13 @@
                 </li>
                 <li class="menu-item">
                     <a href="#resumoP2">Resumo P2</a>
+                    <ul class="submenu">
+                        <li><a href="#regressao-multipla">Regressão Múltipla</a></li>
+                        <li><a href="#mr-mi">Modelo R e I</a></li>
+                        <li><a href="#estatistica-f">Estatística-F</a></li>
+                        <li><a href="#r2-ajustado">R Ajustado</a></li>
+                        <li><a href="#dummys">Dummys</a></li>
+                    </ul>
                 </li>
                 <li class="menu-item">
                     <a href="#">Provas</a>
@@ -85,7 +92,7 @@
             </section>
             <section id="resumoP1">
 
-                <section id="intro">
+                <section id="intro-p1">
                     <h2>Resumo P1</h2>
                     <p>Na primeira parte do curso (até a P1), vamos nos restringir a um modelo de regressão com dois coeficientes (\(\beta_0\) e \(\beta_1\)) e uma variável explicativa (\(X_1\)) - modelo de regressão simples. Eu diria que 70% da P1 consiste em conseguir resolver esse problema, não sugiro que você ignore os outros 30%, mas nessa seção vamos tratar de explicar o principal problema da P1.</p>
                 </section>
@@ -135,13 +142,13 @@
                             <li>graus de liberdade (\( df \)) (eixo y na imagem)</li> <br>
                             <li>nível de significância (\( \alpha \)) e tipo de teste (uma calda ou duas caldas) (eixo x na imagem)</li>
                         </ul>
-                        <p>Graus de liberdade (\(df\)) são diretamente relacionados ao tamanho da amostra que você possui, quanto maior o tamanho da amostra (n) mais a distribuição t se assemelha a distribuição normal. Para calcular os graus de liberdade é muito simples, precisamos subtrair o tamanho da amostra (n) do experimento pelo número de variaveis explicativas do modelo de regressão (k) menos 1 (um).</p>
+                        <p>Graus de liberdade (\(df\)) são diretamente relacionados ao tamanho da amostra que você possui, quanto maior o tamanho da amostra (n) mais a distribuição t se assemelha a distribuição normal. Para calcular os graus de liberdade é muito simples, precisamos subtrair o tamanho da amostra (n) do experimento pelo número de coeficientes do modelo de regressão (k) (incluindo o intercepto - \(\beta_0\)).</p>
                         <p>
                             $$
-                            df=n-k-1
+                                df=n-k
                             $$
                         </p>
-                        <p>Como estamos no modelo simples de regressão linear, “k” será sempre igual a 1. Logo, \(df = n - 2\). Vale lembrar que, na maioria dos casos, o valor exato de \(df\) não deve constar na tabela-t, nesse caso, você deve considerar o grau de liberdade mais próximo.</p>
+                        <p>Como estamos no modelo simples de regressão linear, “k” será sempre igual a 2. Logo, \(df = n - 2\). Vale lembrar que, na maioria dos casos, o valor exato de \(df\) não deve constar na tabela-t, nesse caso, você deve considerar o grau de liberdade mais próximo.</p>
                         <p>O próximo passo consiste em descobrir o eixo x da tabela-t, para isso precisamos descobrir o nível de significância (\( \alpha \)) do exercício, caso não seja informado, podemos considerar \( \alpha \) = 5% ou 0,05. Quando um pesquisador estabelece esse nível de significância, ele está dizendo que há uma chance de apenas 5% de rejeitar a hipótese nula quando ela é verdadeira (ou seja, quando o coeficiente populacional de fato é igual a zero).</p>
                         <p>Obs: Na primeira prova, também não precisamos nos preocupar com falsos positivos e falsos negativos (erro do tipo I e erro do tipo II, respectivamente), por isso vamos explica-los no Resumo P2.</p>
                         <p>Agora, só falta descobrir se estamos falando de um <b>teste de uma ou duas caldas</b>. Povão, isso é simples, se a hipótese alternativa for \(H_a:\beta_1<0\) ou \(H_a:\beta>0\) então esse é um teste <b>unicaudal</b>. Se a hipótese alternativa for \(H_a:\beta_1 \neq 0\) então esse teste é bicaudal. Quando estamos em um teste de duas caldas (maioria dos casos), precisamos dividir o nível de significância (\( \alpha \)) por dois (2) para encontrar o nível de significância na tabela-t. Logo, no nosso exemplo, vamos precisar dividir 0,05 por 2 (eixo x = 0,025).</p>
@@ -158,6 +165,7 @@
                             t_{\beta_1}=\frac{\hat{\beta_1}-\beta_1}{s}
                             $$
                         </p>
+                        <p>Onde:</p>
                         <p>\(t\) = estatística t</p>
                         <p>\(\hat{\beta_1}\) = coeficiente amostral estimado (hipótese alternativa)</p>
                         <p>\(\beta_1\)= coeficiente populacional (hipótese nula)</p>
@@ -184,7 +192,7 @@
                         <li>Como podemos usar a estatística-t para encontrar o p-valor usando a tabela-t (<b>pergunta de prova</b>)?</li>
                     </ul>
                     <p>Quando o p-valor não for fornecido, precisaremos encontrar o seu valor aproximado na tabela-t. Vamos considerar um exemplo com os seguintes dados:</p>
-                    <p>\(df = n - k - 1 = 30 - 1 - 1 = 28\)</p>
+                    <p>\(df = n - k = 30 - 2 = 28\)</p>
                     <p>estatística-t\((|t|) = \frac{\hat{\beta_1}-0}{SE(\hat{\beta_1})}=2,5\)</p>
                     <p>Passo-a-passo:</p>
                     <p>(imagem table-t)</p>
@@ -279,7 +287,7 @@
                     <p>A fórmula do Coeficiente de Determinação (\(R^2\)) está intimamente ligada ao SQT, portanto, os dois possuem interpretações parecidas. Porém, diferente do \(R^2\) que está preocupado em explicar a proporção da variável dependente que é explicada pelo modelo de regressão, o SQT está preocupado em determinar a variação total da variável dependente (y) que precisa ser explicada pelo modelo de regressão. Como você pode ver na fórmula abaixo, o SQT pode ser calculado pela soma de SQE e SQR, onde SQE representa a variação que pode ser explicada pelo modelo de regressão e SQR representa a parte que não pode ser explicada pelo modelo - o residual (u).</p>
                     <p>
                         $$
-                        SQT=SQE+SQR
+                            SQT=SQE+SQR
                         $$
                     </p>
                     <ul class="justified-list">
@@ -315,6 +323,161 @@
                     </ul>
                 </section>
             </section>
+            <section id="resumoP2">
+
+                <section id="intro-p2">
+                    <h2>Resumo P2</h2>
+                    <p>As análises feitas na primeira parte do curso continuam verdadeiras, a não ser por algumas relações que se restringem ao caso específico da regressão simples com uma variável explicativa. Primeiramente, vamos lembrar de como normalmente testamos a significância estatística de uma variável explicativa de um modelo bastante simples (como fizemos na primeira parte do curso), para, em seguida, partimos para o caso de múltiplas variáveis explicativas.</p>
+                </section>
+                
+                <section id="regressao-multipla">
+                    <h3>Modelo de Regressaão Múltipla</h3>
+                    <p>Considere a regressão: </p>
+                    <p>
+                        $$
+                            Y_t = \beta_0 + \beta_1X_t + u_t
+                        $$
+                    </p>
+                    <p>Caso seja do nosso interesse testar a significância estatística de Xt, aplicamos o seguinte teste:</p>
+                    <p>
+                        $$
+                            H_0: \beta_1 = 0
+                        $$
+                        $$
+                            H_1: \beta_1 \neq 0
+                        $$
+                    </p>
+                    <p>Para melhor compreensão do teste de hipótese (seja para o caso de uma variável ou múltiplas), é útil entendermos que o teste acima possui uma outra formulação:</p>
+                    <p>
+                        $$
+                            H_0: Y_t = \beta_0 + u_t 
+                        $$
+                        <span>Modelo Restrito (MR)</span>
+                        $$
+                            H_1: Y_t = \beta_0 + \beta_1X_t + u_t 
+                        $$
+                        <span>Modelo Irrestrito (MI)</span>
+                    </p>
+                    <p>A nossa interpretação continua sendo a mesma, caso aceitemos a hipótese nula, estaríamos concluindo que há evidencias estatísticas para que \(X_t\) seja não significativo, ou seja, de pouco interesse para explicar \(Y_t\), por isso excluímos o parâmetro \(\beta_1\) da regressão. Evidentemente, caso rejeitemos a hipótese nula, há evidencias estatísticas para dizermos que \(X_t\) é estatisticamente significativo, ou seja, útil em alguma medida para explicar \(Y_t\).</p>
+                </section>
+                
+                <section id="mr-mi">
+                    <h3>Modelo Restrito e Irrestrito</h3>
+                    <p>O conceito de modelo restrito e irrestrito certamente é simples, mas é indispensável quando estamos testando hipóteses sobre uma regressão com múltiplas variáveis explicativas. Além de simples, o conceito é intuitivo. Visualmente, no teste de hipótese logo acima, podemos ver que o modelo restrito é mais enxuto do que o modelo irrestrito, isso ocorre exatamente pelo fato de ser uma versão reduzida do modelo com todas as variáveis explicativas possíveis, por definição, o modelo restrito irá aplicar todas as restrições que estão sendo testadas no teste de hipóteses ao modelo. Já o irrestrito, será igual ao modelo “original”, sem aplicar nenhuma restrição. Segue mais um exemplo abaixo:</p>
+                    <p>
+                        Modelo:
+                        $$
+                            Y_t = \beta_0 + \beta_1X_{t1} + \beta_2X_{t2} + \beta_3X_{t3} + \beta_4X_{t4} + u_t
+                        $$
+                    </p>
+                    <p>
+                        Teste de hipótese,
+                        $$
+                            H_0: \beta_1 = \beta_2 = \beta_3 = \beta_4 = 0
+                        $$
+                        $$
+                            H_1: Algum \beta \neq 0
+                        $$
+                        Ou,
+                        $$
+                            H_0: Y_t = \beta_0 + u_t
+                        $$
+                        <span>Modelo Restrito (MR)</span>
+                        $$
+                            H_1: Y_t = \beta_0 + \beta_1X_{t1} + \beta_2X_{t2} + \beta_3X_{t3} + \beta_4X_{t4} + u_t
+                        $$
+                        <span>Modelo Irrestrito (MI)</span>
+                    </p>
+                </section>
+                
+                <section id="estatistica-f">
+                    <h3>Teste F</h3>
+                    <p>Inicialmente, uma pergunta que pode surgir é: qual é a utilidade de migrarmos da estatística t para a F? A resposta está no objetivo que o pesquisador tem quando está testando uma hipótese, caso o interesse seja apenas descobrir se uma variável é estatisticamente significativa, basta usarmos o conhecimento que temos até o momento (estatística t), entretanto, se for do interesse descobrir se um conjunto de variáveis explicativas são significativas, precisamos recorrer a um outro ferramentário estatístico (F). Até o momento o cálculo da estatística F tem sido feito somente pela relação existente com a estatística t. Como sabemos que a primeira é, por definição, a razão de duas distribuições qui-quadrado, conseguimos inferir que t2 = F (isso serve apenas quando há uma restrição na hipótese nula!). Segue breve revisão abaixo.</p>
+                    <p>Considerando X ~ N(0,1)  e X2 ~ X2n (qui-quadrado com n graus de liberdade), e que X e Y são independentes, é possível dizer que:</p>
+                    <p>
+                        $$
+                            t^2 = (\frac{X_1}{\square\frac{X_2}{n}})^2 = \frac{X_1^2}{\frac{X_2}{n}} = \frac{\frac{X_1^2}{1}}{\frac{X_2}{n}} ~ F_{1,n}
+                        $$
+                    </p>
+                    <p>Entretanto essa forma de se chegar à estatística F é bastante restrita, sendo útil apenas para um caso específico. Nessa seção iremos mostrar mais duas formas mais gerais de se chegar à estatística F.</p>
+                    <ul class="justified-list">
+                        <li>Primeira forma:</li>
+                        $$
+                            F = \frac{\frac{(SQR_{MR}-SQR_{MI})}{k-p}}{\frac{SQR_{MI}}{n-k}}
+                        $$
+                        <li>Segunda forma:</li>
+                        $$
+                            F = \frac{\frac{(R^2_{MI}-R^2_{MR})}{k-p}}{\frac{(1-R^2_{MI})}{n-k}}
+                        $$
+                    </ul>
+                    <p>Com as duas fórmulas acima conseguimos calcular a estatística F, processo que ficará mais claro na seção de exemplos práticos. Por fim é importante ressaltar como funciona o processo de aceitação ou rejeição de hipóteses com a F.</p>
+                    <p>Como já foi dito nos parágrafos acima, a estatística F vai ser utilizada na realização de testes sobre a significância conjunta das variáveis explicativas, ou seja, sobre o quão relevantes algumas variáveis de fato são para o modelo. O método de se fazer isso, essencialmente, não é diferente do que já estamos acostumados. Vamos precisar de algumas coisas: 1. A distribuição F, 2. Nível de significância, 3. Nossa estatística F. Simples!</p>
+                    <img src="static\img\distribuicao-f.png" alt="gráfico da distribuicao-f" style="width: 100%;">
+                    <p>A estatística F, diferente da t e normal, possui apenas valores positivos (ver gráfico acima), tendo em vista que, por definição, é a razão de duas qui-quadrado. Dessa forma não é necessário dividir o alpha (grau de significância) por 2, podemos concentrar tudo num lado só.</p>
+                    <p>Por último, a F possui 2 graus de Liberdade (Fgrau 1, grau 2), o resulta em uma tabela inédita. Teremos tabelas diferentes para cada grau de significância (1%,2,5%,5%,10%...), assim sendo possível incluirmos na tabela os dois graus de liberdade (um na linha e outro na coluna). Segue exemplo abaixo,</p>
+                    <img src="static\img\tabela-f.jpg" alt="tabela f" style="width: 100%;">
+                    <br>
+                </section>
+                
+                <section id="r2-ajustado">
+                    <br>
+                    <h3>R2 Ajustado</h3>
+                    <p>
+                        Como vimos na primeira parte do curso, o R2 possui um problema intrínseco, que gera um incentivo ao pesquisador para inserir cada vez mais variáveis explicativas a regressão, tendo em vista que esse acréscimo de variáveis beneficia o R2 (na medida que também aumenta o SQE).
+                        Para resolver o problema existe o R2 ajustado, iremos brevemente destacar algumas de suas características.
+                    </p>
+                    <p>Definição:</p>
+                    <p>
+                        $$
+                            \bar{R^2} = 1 - (1 - R^2)\frac{n-1}{n-k}
+                        $$
+                    </p>
+                    <ul class="justified-list list-number">
+                        <li>Considerando que k é o número de parâmetros na regressão (considerando o intercepto) e n é o número de observações na amostra, podemos dizer que quando k > 1, \(R^2\) ajust < R2.</li>
+                        <li>É possível termos R2ajust negativo! Basta tudo que está a direita do “1” ser > 1, nesse caso teríamos uma subtração de 1 por algum numero maior do que 1, resultando em um número negativo.</li>
+                        <li>\(R^2\) ajust pode ser igual ao R2 padrão, basta R2 ser = 1.</li>
+                    </ul>
+                    <br>
+                </section>
+                
+                <section id="dummys">
+                    <h3>Variáveis Dummy</h3>
+                    <p>Considere a regressão abaixo:</p>
+                    <p>
+                        $$
+                            Y_t = \beta_0 + \beta_1D_{1t} + \beta_2D_{2t} + \beta_3X_t
+                        $$
+                    </p>
+                    <p>Onde:</p>
+                    <p>\(Y_t\):  Nota dos estudantes de econometria.</p>
+                    <p>\(D_{1t}\): Variável binária que assume valor 1 caso o estudante faça a prova em menos de uma hora e 0 caso o contrário.</p>
+                    <p>\(D_{2t}\): Variável binária que assume valor 1 caso o estudante faça a prova de lápis e 0 caso contrário.</p>
+                    <p>\(X_t\): Número de horas estudadas.</p>
+                    <p>
+                        Note que as variáveis dummy são essas que assumem apenas dois valores, elas buscam captar possíveis diferenças entre grupos amostrais distintos.
+                        Digamos que a regressão acima, ao ser estimada, tenha o seguinte resultado:
+                    </p>
+                    <p>
+                        $$
+                            Y_t = 0,5 - 3D_{1t} + 1D_{2t} + 0,5X_t
+                        $$
+                    </p>
+                    <p>O que podemos dizer a partir do resultado acima?</p>
+                    <p>É valido interpretar, primeiramente, o cenário “base”, em que as dummys assumem o valor 0. Nesse caso, estaríamos olhando para aquele estudante que termina a prova em mais de 1 hora e faz a prova de caneta. Nesse caso ficaríamos apenas com o intercepto e o coeficiente angular (0,5 + 0,5X).</p>
+                    <p>Está claro que quanto mais horas estudadas, maior tende a ser a nota do aluno, agora vamos analisar o impacto das dummys (a primeira vista).</p>
+                    <p>\(D_{1t}\): Pode-se dizer, considerando o sinal negativo (-3) e sem olhar a significância estatística da estimação, que alunos que terminam a prova em menos de uma hora tendem a ter notas menores.</p>
+                    <p>\(D_{2t}\): Pode-se dizer, considerando o sinal positivo e sem olhar a significância estatística da estimação, que alunos que não utilizam lápis tendem a ter resultados melhores na prova (são mais confiantes talvez?).</p>
+                    <p>Essa análise seria uma primeira etapa, agora para concluir vamos olhar para a significância estatística dos parâmetros estimados para as variáveis binárias (nível de significância de 5%).</p>
+                        <table>
+                            <thead><tr><th>Parâmetro</th>	<th>P-Valor</th></tr></thead>
+                            <tbody>
+                                <tr><td>B1</td>	<td><0,001</td></tr>
+                                <tr><td>B2</td>	<td>0,2</td></tr>
+                            </tbody>
+                        </table>
+                    <p>Apesar do que foi dito acima, quando olhamos para a significância estatística concluímos que há evidencias estatísticas, ao nível de 5% de significância, para se dizer que não há diferença relevante entre os alunos que utilizam lápis ou caneta para fazer a prova.</p>
+                </section>
+            </section>
         </main>
         <aside class="side-menu right">
             <h2>Important Notes & News</h2>
@@ -322,7 +485,7 @@
         </aside>
     </div>
     <footer>
-        <p>&copy; 2024 Professor Diego Braga</p>
+        <p>&copy; 2024 Professor Diogo Braga</p>
     </footer>
     <script src="..\static\script.js"></script>
 </body>
