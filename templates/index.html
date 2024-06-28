@@ -119,7 +119,8 @@
                         $$H_0:\beta_1 = 0$$
                         $$H_1:\beta_1 \neq 0$$
                     </p>
-                    <p>A hipótese nula seria, nesse caso: coeficiente da variável explicativa \(\beta_1\) igual a zero. Ou seja, até que se rejeite essa hipótese, a variável explicativa selecionada não tem relação alguma com a variável dependente (Y).</p>
+                    <p>A hipótese nula seria, nesse caso o coeficiente da variável explicativa (\(\beta_1\)) igual a zero. Ou seja, até que se rejeite essa hipótese nula, a variável explicativa selecionada não tem relação alguma com a variável dependente (\(Y\)).</p>
+                    <p>Além disso, os teste de hipótese normalmente só são aplicados sobre os coeficientes das varivéis explicativas (\(\beta_{1,2,3,...}\)) (mesmo na P2). Via de regra, <b>não</b> vamos testar a significância estatística do intercepto (\(\beta_0\)).</p>
                     <p>Existem três formas de rejeitar a hipótese nula:</p>
                     <ul class="justified-list list-number">
                         <li>Usando Estatística-T e Valor Crítico;</li> <br>
@@ -273,6 +274,7 @@
                             R^2=\frac{SQE}{SQT}
                         $$
                     </p>
+                    <p>Onde:</p>
                     <p>\(R^2\) = coeficiente de determinação;</p>
                     <p>\(SQT\) = soma total dos quadrados da variável dependente (y) (SST em inglês) - soma da diferença entre o valor observado de y e a sua média amostral \(\bar{y}\) ao quadrado;</p>
                     <p>\(SQE\) = soma dos quadrados <b>explicados</b> pelo modelo de regressão (SSR em inglês) - soma da diferença entre o valor estimado pelo modelo de regressão \(\hat{y}\) para aquela observação e a média amostral \(\bar{y}\) ao quadrado;</p>
@@ -318,7 +320,7 @@
                                 SQR=\sum^n_{i=1}(y_i-\hat{y}_i)^2
                             $$
                         </p>
-                        <p>Um SQR maior sugere um encaixe <b>menor</b> do modelo de regressão com os dados da amostra.</p>
+                        <p>Um SQR maior sugere um encaixe <b>menor</b> do modelo de regressão com os dados da amostra. Repare que, ao <b>não</b> rejeitar a hipótese nula: \(SQT = SQR\) (importante na P2).</p>
                         <p>A distância da linha de regressão e a linha de média representa a variação que é explicada pelo modelo (SQE).</p>
                     </ul>
                 </section>
@@ -362,7 +364,7 @@
                 </section>
                 
                 <section id="mr-mi">
-                    <h3>Modelo Restrito e Irrestrito</h3>
+                    <h3>Modelo Restrito (MR) e Irrestrito (MI)</h3>
                     <p>O conceito de modelo restrito e irrestrito certamente é simples, mas é indispensável quando estamos testando hipóteses sobre uma regressão com múltiplas variáveis explicativas. Além de simples, o conceito é intuitivo. Visualmente, no teste de hipótese logo acima, podemos ver que o modelo restrito é mais enxuto do que o modelo irrestrito, isso ocorre exatamente pelo fato de ser uma versão reduzida do modelo com todas as variáveis explicativas possíveis, por definição, o modelo restrito irá aplicar todas as restrições que estão sendo testadas no teste de hipóteses ao modelo. Já o irrestrito, será igual ao modelo “original”, sem aplicar nenhuma restrição. Segue mais um exemplo abaixo:</p>
                     <p>
                         Modelo:
@@ -388,6 +390,7 @@
                         $$
                         <span>Modelo Irrestrito (MI)</span>
                     </p>
+                    <p>Vale ressaltar o impacto de modelo restrito e irrestrito nos "SQs". O valor de SQT não muda entre o modelo restriro e irrestrito, dado que SQT representa a variação de \(Y\) que precisa ser explicada pelo modelo de regressão. Porém, no modelo restrito, ou seja, quando a hipótese nula <b>não</b> é rejeitada, toda a variação de \(Y\) deve ser explicada pela soma dos quadrados dos resíduos (SQR). Logo, \(SQT = SQR\).</p>
                 </section>
                 
                 <section id="estatistica-f">
@@ -410,34 +413,35 @@
                             F = \frac{\frac{(R^2_{MI}-R^2_{MR})}{k-p}}{\frac{(1-R^2_{MI})}{n-k}}
                         $$
                     </ul>
+                    <p>Onde:</p>
+                    <p>\(k-p\) ou \(q\) = número de coeficientes na hipótese nula (sem considerar o intercepto). Também chamado de "número de restrições".</p>
+                    <p>\(n-k\) = graus de liberdade do modelo irrestrito - \(gl_{irrestrito}\)</p>
+                    <p>\(SQR_{MR}\) = no caso do modelo restrito: \(SQR_{MR} = SQT\) - sem rejeitar a hipótese nula, toda a variação de \(Y\) é explicada pelo termo de erro ou residual.</p>
+                    <p>\(SQR_{MI}\) = no caso do modelo irrestrito: \(SQR_{MI} = SQT - SQE_{MI}\)</p>
                     <p>Com as duas fórmulas acima conseguimos calcular a estatística F, processo que ficará mais claro na seção de exemplos práticos. Por fim é importante ressaltar como funciona o processo de aceitação ou rejeição de hipóteses com a F.</p>
                     <p>Como já foi dito nos parágrafos acima, a estatística F vai ser utilizada na realização de testes sobre a significância conjunta das variáveis explicativas, ou seja, sobre o quão relevantes algumas variáveis de fato são para o modelo. O método de se fazer isso, essencialmente, não é diferente do que já estamos acostumados. Vamos precisar de algumas coisas: 1. A distribuição F, 2. Nível de significância, 3. Nossa estatística F. Simples!</p>
-                    <img src="static\img\distribuicao-f.png" alt="gráfico da distribuicao-f" style="width: 100%;">
+                    <img src="\static\img\distribuicao-f.png" alt="gráfico da distribuicao-f" style="width: 100%;">
                     <p>A estatística F, diferente da t e normal, possui apenas valores positivos (ver gráfico acima), tendo em vista que, por definição, é a razão de duas qui-quadrado. Dessa forma não é necessário dividir o alpha (grau de significância) por 2, podemos concentrar tudo num lado só.</p>
                     <p>Por último, a F possui 2 graus de Liberdade (Fgrau 1, grau 2), o resulta em uma tabela inédita. Teremos tabelas diferentes para cada grau de significância (1%,2,5%,5%,10%...), assim sendo possível incluirmos na tabela os dois graus de liberdade (um na linha e outro na coluna). Segue exemplo abaixo,</p>
-                    <img src="static\img\tabela-f.jpg" alt="tabela f" style="width: 100%;">
+                    <img src="\static\img\tabela-f.jpg" alt="tabela-f" style="width: 100%;">
                     <br>
                 </section>
                 
                 <section id="r2-ajustado">
                     <br>
                     <h3>R2 Ajustado</h3>
-                    <p>
-                        Como vimos na primeira parte do curso, o R2 possui um problema intrínseco, que gera um incentivo ao pesquisador para inserir cada vez mais variáveis explicativas a regressão, tendo em vista que esse acréscimo de variáveis beneficia o R2 (na medida que também aumenta o SQE).
-                        Para resolver o problema existe o R2 ajustado, iremos brevemente destacar algumas de suas características.
-                    </p>
-                    <p>Definição:</p>
+                    <p>Como vimos na primeira parte do curso, o \(R^2\) possui um problema intrínseco. Quanto maior o número de variaveis explicativas, maior será o \(R^2\) - mesmo que essas variáveis não ajudem a explicar a variavel dependente (\(Y\)). Isso incentiva o pesquisador a inserir cada vez mais variáveis explicativas no modelo de regressão, tendo em vista que esse acréscimo de variáveis beneficia o \(R^2\) - na medida em que também aumenta o SQE.</p>
+                    <p>Para resolver esse problema existe o <b>\(R^2\) ajustado (\(\bar{R^2}\))</b>, iremos brevemente destacar algumas de suas características. Observe a fórmula a seguir:</p>
                     <p>
                         $$
                             \bar{R^2} = 1 - (1 - R^2)\frac{n-1}{n-k}
                         $$
                     </p>
                     <ul class="justified-list list-number">
-                        <li>Considerando que k é o número de parâmetros na regressão (considerando o intercepto) e n é o número de observações na amostra, podemos dizer que quando k > 1, \(R^2\) ajust < R2.</li>
-                        <li>É possível termos R2ajust negativo! Basta tudo que está a direita do “1” ser > 1, nesse caso teríamos uma subtração de 1 por algum numero maior do que 1, resultando em um número negativo.</li>
-                        <li>\(R^2\) ajust pode ser igual ao R2 padrão, basta R2 ser = 1.</li>
+                        <li>Considerando que k é o número de parâmetros na regressão (considerando o intercepto) e n é o número de observações na amostra, podemos dizer que quando k > 1, \(\bar{R^2} \lt R^2\).</li> <br>
+                        <li>É possível termos \(\bar{R^2}\) <b>negativo</b>! Basta tudo que está a direita do primeiro “1” ser maior que 1, para isso acontecer: \(R^2\) = 0 ou \(k \gt n\). No último caso, estamos dizendo que o número de coeficientes do modelo de regressão é maior do que o tamanho da amostra.</li> <br>
+                        <li>\(\bar{R^2}\) ajustado pode ser igual ao \(R^2\) padrão, basta que \(R^2 = 1\).</li><br>
                     </ul>
-                    <br>
                 </section>
                 
                 <section id="dummys">
@@ -453,10 +457,8 @@
                     <p>\(D_{1t}\): Variável binária que assume valor 1 caso o estudante faça a prova em menos de uma hora e 0 caso o contrário.</p>
                     <p>\(D_{2t}\): Variável binária que assume valor 1 caso o estudante faça a prova de lápis e 0 caso contrário.</p>
                     <p>\(X_t\): Número de horas estudadas.</p>
-                    <p>
-                        Note que as variáveis dummy são essas que assumem apenas dois valores, elas buscam captar possíveis diferenças entre grupos amostrais distintos.
-                        Digamos que a regressão acima, ao ser estimada, tenha o seguinte resultado:
-                    </p>
+                    <p> Note que as variáveis dummy são essas que assumem apenas dois valores, elas buscam captar possíveis diferenças entre grupos amostrais distintos. </p>
+                    <p>Digamos que a regressão acima, ao ser estimada, tenha o seguinte resultado:</p>
                     <p>
                         $$
                             Y_t = 0,5 - 3D_{1t} + 1D_{2t} + 0,5X_t
