@@ -140,20 +140,25 @@
                         <p>(imagem da tabela-t)</p>
                         <p>Contudo, para usar a tabela precisamos dos seguintes dados:</p>
                         <ul class="justified-list">
-                            <li>graus de liberdade (\( df \)) (eixo y na imagem)</li> <br>
+                            <li>graus de liberdade (\( gl \)) (eixo y na imagem)</li> <br>
                             <li>nível de significância (\( \alpha \)) e tipo de teste (uma calda ou duas caldas) (eixo x na imagem)</li>
                         </ul>
-                        <p>Graus de liberdade (\(df\)) são diretamente relacionados ao tamanho da amostra que você possui, quanto maior o tamanho da amostra (n) mais a distribuição t se assemelha a distribuição normal. Para calcular os graus de liberdade é muito simples, precisamos subtrair o tamanho da amostra (n) do experimento pelo número de coeficientes do modelo de regressão (k) (incluindo o intercepto - \(\beta_0\)).</p>
+                        <p>Graus de liberdade (\(gl\)) são diretamente relacionados ao tamanho da amostra que você possui, quanto maior o tamanho da amostra (n) mais a distribuição t se assemelha a distribuição normal. Para calcular os graus de liberdade é muito simples, precisamos subtrair o tamanho da amostra (n) do experimento pelo número de coeficientes do modelo de regressão (k) (incluindo o intercepto - \(\beta_0\)).</p>
                         <p>
                             $$
-                                df=n-k
+                                gl=n-k
                             $$
                         </p>
-                        <p>Como estamos no modelo simples de regressão linear, “k” será sempre igual a 2. Logo, \(df = n - 2\). Vale lembrar que, na maioria dos casos, o valor exato de \(df\) não deve constar na tabela-t, nesse caso, você deve considerar o grau de liberdade mais próximo.</p>
+                        <p>Onde:</p>
+                        <p>gl = graus de liberdade (ou graus de liberdade dos resíduos)</p>
+                        <p>n = número de observações da amostra</p>
+                        <p>k = número de coeficientes/parâmetros do modelo (incluindo o intercepto)</p>
+                        <p>Como estamos no modelo simples de regressão linear, “k” será sempre igual a 2. Logo, \(gl = n - 2\). Vale lembrar que, na maioria dos casos, o valor exato de \(gl\) não deve constar na tabela-t, nesse caso, você deve considerar o grau de liberdade mais próximo.</p>
+                        <p>Quando estudarmos os "SQs" (ainda nessa seção - resumo da P1), vamos observar que existe um "cara" chamado <b>SQR</b>. Também podemos usar os graus de liberdade (\(gl\)) do SQR para descobrir o número de observações da amostra (\(n\)) - apenas do SQR. Por exemplo, SQR possui \(18gl\), logo: \(n = gl + k = 18 + 2 = 20\). Você <b>NÃO</b> deve utilizar os graus de liberdade da regressão (SQE) para encontrar o "n".</p>
                         <p>O próximo passo consiste em descobrir o eixo x da tabela-t, para isso precisamos descobrir o nível de significância (\( \alpha \)) do exercício, caso não seja informado, podemos considerar \( \alpha \) = 5% ou 0,05. Quando um pesquisador estabelece esse nível de significância, ele está dizendo que há uma chance de apenas 5% de rejeitar a hipótese nula quando ela é verdadeira (ou seja, quando o coeficiente populacional de fato é igual a zero).</p>
                         <p>Obs: Na primeira prova, também não precisamos nos preocupar com falsos positivos e falsos negativos (erro do tipo I e erro do tipo II, respectivamente), por isso vamos explica-los no Resumo P2.</p>
                         <p>Agora, só falta descobrir se estamos falando de um <b>teste de uma ou duas caldas</b>. Povão, isso é simples, se a hipótese alternativa for \(H_a:\beta_1<0\) ou \(H_a:\beta>0\) então esse é um teste <b>unicaudal</b>. Se a hipótese alternativa for \(H_a:\beta_1 \neq 0\) então esse teste é bicaudal. Quando estamos em um teste de duas caldas (maioria dos casos), precisamos dividir o nível de significância (\( \alpha \)) por dois (2) para encontrar o nível de significância na tabela-t. Logo, no nosso exemplo, vamos precisar dividir 0,05 por 2 (eixo x = 0,025).</p>
-                        <p>Agora, basta traçar uma linha reta entre o \(df\) e nível de significância (\( \alpha \)) na tabela-t para encontrar o valor crítico (\(t^*\)).</p>
+                        <p>Agora, basta traçar uma linha reta entre o \(gl\) e nível de significância (\( \alpha \)) na tabela-t para encontrar o valor crítico (\(t^*\)).</p>
 
                         <li><b>Estatística-T ou T-valor</b></li>
                         <p>Existem duas fórmulas para calcular a estatística t. Vamos precisar mostrar as duas fórmulas para entender a definição de estatística t:</p>
@@ -193,7 +198,7 @@
                         <li>Como podemos usar a estatística-t para encontrar o p-valor usando a tabela-t (<b>pergunta de prova</b>)?</li>
                     </ul>
                     <p>Quando o p-valor não for fornecido, precisaremos encontrar o seu valor aproximado na tabela-t. Vamos considerar um exemplo com os seguintes dados:</p>
-                    <p>\(df = n - k = 30 - 2 = 28\)</p>
+                    <p>\(gl = n - k = 30 - 2 = 28\)</p>
                     <p>estatística-t\((|t|) = \frac{\hat{\beta_1}-0}{SE(\hat{\beta_1})}=2,5\)</p>
                     <p>Passo-a-passo:</p>
                     <p>(imagem table-t)</p>
@@ -203,7 +208,7 @@
                         <li>Feito isso, basta observar o nível de significância dessa coluna;</li> <br>
                         <li>Agora, precisamos analisar o teste de hipótese, caso o teste de hipótese possua duas caldas, multiplique o valor encontrado no começo da coluna por 2, caso contrário, multiplique por 1. Esse é o valor aproximado do p-valor.</li>
                     </ul>
-                    <p>Obs (passo 2): Caso a estatística-t seja muito alta, digamos 5, dificilmente a tabela-t conterá um valor crítico próximo a esse número dados os graus de liberdade (\(df\)), portanto, você pode assumir que o p-valor é muito pequeno. Repare que os valores críticos a direita da coluna são maiores e estão associados a níveis de significância mais baixos.</p>
+                    <p>Obs (passo 2): Caso a estatística-t seja muito alta, digamos 5, dificilmente a tabela-t conterá um valor crítico próximo a esse número dados os graus de liberdade (\(gl\)), portanto, você pode assumir que o p-valor é muito pequeno. Repare que os valores críticos a direita da coluna são maiores e estão associados a níveis de significância mais baixos.</p>
 
                     <h4>3. Intervalo de Confiança (CI) e Hipótese Nula (\(H_0\))</h4>
                     <p>O intervalo de confiança (CI) estabelece o intervalo em que a hipótese nula de \(\beta_1\) deve estar para que seja aceita, dado o nível de significância estabelecido (5%). Como no nosso exemplo a hipótese nula será sempre: \(H_0:{\beta_1}=0\), caso o intervalo de confiança (CI) não contenha 0 (zero), podemos rejeitar a hipótese nula.</p>
@@ -226,7 +231,7 @@
                     <p>Passo-a-passo:</p>
                     <ul class="justified-list list-number">
                         <li>Com isso, podemos calcular o valor crítico na tabela-t:</li>
-                        <p>Para o nível de significância de 5% (como ele não foi informado, podemos assumir \(\alpha=5\%\)) e graus de liberdade \(df = n - k - 1 = 30 - 1 - 1 = 28\), o valor crítico (\(t^*\)) na tabela-t seria de 2,048.</p>
+                        <p>Para o nível de significância de 5% (como ele não foi informado, podemos assumir \(\alpha=5\%\)) e graus de liberdade \(gl = n - k = 30 - 2 = 28\), o valor crítico (\(t^*\)) na tabela-t seria de 2,048.</p>
                         <li>Agora, basta substituir na fórmula:</li>
                         <p>
                             $$
