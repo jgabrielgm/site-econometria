@@ -425,10 +425,10 @@
                     <p>\(SQR_{MI}\) = no caso do modelo irrestrito: \(SQR_{MI} = SQT - SQE_{MI}\)</p>
                     <p>Com as duas fórmulas acima conseguimos calcular a estatística F, processo que ficará mais claro na seção de exemplos práticos. Por fim é importante ressaltar como funciona o processo de aceitação ou rejeição de hipóteses com a F.</p>
                     <p>Como já foi dito nos parágrafos acima, a estatística F vai ser utilizada na realização de testes sobre a significância conjunta das variáveis explicativas, ou seja, sobre o quão relevantes algumas variáveis de fato são para o modelo. O método de se fazer isso, essencialmente, não é diferente do que já estamos acostumados. Vamos precisar de algumas coisas: 1. A distribuição F, 2. Nível de significância, 3. Nossa estatística F. Simples!</p>
-                    <img src="\static\img\distribuicao-f.png" alt="gráfico da distribuicao-f" style="width: 100%;">
+                    <img src="..\static\img\distribuicao-f.png" alt="gráfico da distribuicao-f" style="width: 100%;">
                     <p>A estatística F, diferente da t e normal, possui apenas valores positivos (ver gráfico acima), tendo em vista que, por definição, é a razão de duas qui-quadrado. Dessa forma não é necessário dividir o alpha (grau de significância) por 2, podemos concentrar tudo num lado só.</p>
                     <p>Por último, a F possui 2 graus de Liberdade (Fgrau 1, grau 2), o resulta em uma tabela inédita. Teremos tabelas diferentes para cada grau de significância (1%,2,5%,5%,10%...), assim sendo possível incluirmos na tabela os dois graus de liberdade (um na linha e outro na coluna). Segue exemplo abaixo,</p>
-                    <img src="\static\img\tabela-f.jpg" alt="tabela-f" style="width: 100%;">
+                    <img src="..\static\img\tabela-f.jpg" alt="tabela-f" style="width: 100%;">
                     <br>
                 </section>
                 
@@ -458,11 +458,11 @@
                         $$
                     </p>
                     <p>Onde:</p>
-                    <p>\(Y_t\):  Nota dos estudantes de econometria.</p>
-                    <p>\(D_{1t}\): Variável binária que assume valor 1 caso o estudante faça a prova em menos de uma hora e 0 caso o contrário.</p>
-                    <p>\(D_{2t}\): Variável binária que assume valor 1 caso o estudante faça a prova de lápis e 0 caso contrário.</p>
-                    <p>\(X_t\): Número de horas estudadas.</p>
-                    <p> Note que as variáveis dummy são essas que assumem apenas dois valores, elas buscam captar possíveis diferenças entre grupos amostrais distintos. </p>
+                    <p>\(Y_t\) = Nota dos estudantes de econometria.</p>
+                    <p>\(D_{1t}\) = Variável binária (dummy) que assume valor 1 caso o estudante faça a prova em menos de uma hora e 0 caso o contrário.</p>
+                    <p>\(D_{2t}\) = Variável binária (dummy) que assume valor 1 caso o estudante faça a prova de lápis e 0 caso contrário.</p>
+                    <p>\(X_t\) = Número de horas estudadas (não é uma dummy).</p>
+                    <p> Note que as variáveis dummy são essas que assumem apenas dois valores (1 ou 0), elas buscam captar possíveis diferenças entre uma determinada amostra e a <b>categoria-base</b>. Qual é a categoria-base desse modelo? (<b>pergunta de P2</b>) Boa pergunta, nesse caso, a categoria base seria a pessoa que leva mais uma hora para fazer a prova (\(D_{1t} = 0\)) e faz a prova a caneta (\(D_{2t} = 0\)). O valor esperado para categoria-base é o intercepto (\(\beta_0\)).</p>
                     <p>Digamos que a regressão acima, ao ser estimada, tenha o seguinte resultado:</p>
                     <p>
                         $$
