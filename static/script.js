@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // forces to scroll to the top of the website every time it loads
-    document.documentElement.scrollTop = 0; // For most browsers
-    document.body.scrollTop = 0; // Safari
+    // document.documentElement.scrollTop = 0; // For most browsers
+    // document.body.scrollTop = 0; // Safari
 
     renderMathInElement(document.body, {
         delimiters: [
