@@ -12,7 +12,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* outline: 0.1px solid red;  */
+    user-select: text;
+    /* outline: 0.1px solid red; */
     /* width: 100%; */
 }
 
@@ -32,11 +33,15 @@ body {
     flex-direction: column;
 }
 
-p {
-    margin: 0 0 10px 0;
+p, li {
+    margin: 12px 0;
     text-align: justify;
     line-height: 1.5;
     font-size: var(--font-size-min-width);
+}
+
+nav p{
+    margin: 5px 0;
 }
 
 h2,
@@ -104,6 +109,19 @@ header {
     position: absolute;
 }
 
+/* header .menu-toggle {
+    position: absolute;
+    background: none;
+    border: none;
+    color: var(--main-color-white);
+    font-size: 24px;
+    cursor: pointer;
+    right: 0;
+    padding: 10px;
+    top: 0;
+    bottom: 0;
+} */
+
 .container {
     display: flex;
     width: 100%;
@@ -127,9 +145,79 @@ header {
     font-size: var(--font-size-min-width);
 }
 
-.container main table{
+.container main table {
     margin-bottom: 10px;
-    width: 12rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    outline: solid black 1px;
+}
+
+.container main table thead {
+    width: 100%;
+    height: 5vh;
+    background-color: var(--secundary-color-blue);
+    color: var(--main-color-white);
+    display: flex; /* Add flex display to thead */
+    flex-direction: column;
+}
+
+.container main table tbody {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container main table thead tr {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.container main table tbody tr {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    flex-direction: row; /* Change to row for tbody tr */
+}
+.container main table tbody tr:nth-child(even) {
+    background-color: var(--secundary-color-light-grey);
+}
+.container main table thead tr th {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-grow: 1;
+    flex-basis: 0; /* Allow flex items to grow */
+}
+
+.container main table tbody tr td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    flex-grow: 1;
+    flex-basis: 0; /* Allow flex items to grow */
+}
+.container main table tbody tr td p{
+    line-height: 1.3;
+    text-align: start;
+}
+
+.container main table thead tr th:nth-child(1),
+.container main table tbody tr td:nth-child(1) {
+    flex-basis: 40%; 
+}
+
+.container main table thead tr th:nth-child(2),
+.container main table tbody tr td:nth-child(2) {
+    flex-basis: 60%; 
 }
 
 .justified-list {
@@ -209,7 +297,7 @@ footer {
     }
 
     .container main{
-        padding: 2rem 16rem;
+        padding: 5rem 25rem;
     }
 
     .container main iframe{
@@ -217,9 +305,9 @@ footer {
     }
 
     .container main p,
-    .container main ul{
+    .container main li{
         font-size: var(--font-size-max-width);
-        line-height: 1.4;
+        line-height: 1.5;
     }
 
     .container .side-menu {
@@ -251,7 +339,7 @@ footer {
     }
     
     .side-menu .menu-item .submenu li {
-        padding: 0.5rem 0 0.2rem 0;
+        padding: 0;
         height: 100%;
     }
     

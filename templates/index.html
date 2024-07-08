@@ -27,17 +27,18 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLW3B6G2F5"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'G-NLW3B6G2F5');
+        gtag('config', 'G-NLW3B6G2F5');
     </script>
     <!-- icones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- formulas e equações -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -46,6 +47,7 @@
     <!-- End Google Tag Manager (noscript) -->
     <header>
         <h1>Econometria I</h1>
+        <!-- <button class="menu-toggle" aria-label="Toggle Menu">&#9776;</button> -->
     </header>
     <div class="container">
         <nav class="side-menu left">
@@ -56,6 +58,7 @@
                         <li><a href="#regressao-simples">Regressão Simples</a></li>
                         <li><a href="#teste-hipotese">Teste de Hipótese</a></li>
                         <li><a href="#qualidade-modelo">Qualidade do Modelo</a></li>
+                        <li><a href="#conclusao-p1">Fórmulas</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
@@ -117,7 +120,7 @@
 
                 <section id="teste-hipotese">
                     <h3>Teste de Hipótese</h3>
-                    <p>Testes de hipótese ajudam a determinar se existem evidências suficientes para suportar uma determinada hipótese sobre a população com base nos dados amostrais. Essa hipótese normalmente é chamada de “hipótese alternativa” (\(H_1\)) e a hipótese consolidada sobre a população, ou melhor, o senso comum sobre a população, é chamado de “hipótese nula” (\(H_0\)).</p>
+                    <p>Para avaliar se a relação entre \(Y\) e \(X\) de fato possui significância estatística, vamos preciar criar <b>testes de hipótese</b>. Eles ajudam o pesquisador a determinar se existem evidências suficientes para suportar uma determinada hipótese sobre a população com base nos dados amostrais. Essa hipótese normalmente é chamada de “hipótese alternativa” (\(H_1\)) e a hipótese consolidada sobre a população, ou melhor, o senso comum sobre a população, é chamado de “hipótese nula” (\(H_0\)).</p>
                     <p>No nosso caso, na P1, quase sempre a hipótese nula e alternativas serão:</p>
                     <p>
                         $$
@@ -127,30 +130,33 @@
                         \end{gather}
                         $$
                     </p>
-                    <p>A hipótese nula seria, nesse caso o coeficiente da variável explicativa (\(\beta_1\)) igual a zero. Ou seja, até que se rejeite essa hipótese nula, a variável explicativa selecionada não tem relação alguma com a variável dependente (\(Y\)).</p>
-                    <p>Além disso, os teste de hipótese normalmente só são aplicados sobre os coeficientes das varivéis explicativas (\(\beta_{1,2,3,...}\)) (mesmo na P2). Via de regra, <b>não</b> vamos testar a significância estatística do intercepto (\(\beta_0\)).</p>
-                    <p>Existem três formas de rejeitar a hipótese nula:</p>
+                    <p>A hipótese nula seria, nesse caso o coeficiente da variável explicativa (\(\beta_1\)) igual a zero. Ou seja, até que se rejeite essa hipótese, a variável explicativa selecionada não tem relação alguma com a variável dependente \(Y\).</p>
+                    <p>Além disso, os teste de hipótese normalmente só são aplicados sobre os coeficientes das varivéis explicativas (\(\beta_{1,2,3,...}\)) (mesmo na P2). Via de regra, nos <b>não</b> vamos testar a significância estatística do intercepto (\(\beta_0\)).</p>
+                    <p>Como você vai montar o seu teste de hipótese? Depende do exercício em questão. Dificilmente ele será dado pelo exercício, cabe ao pequisador determinar a hipótese nula e a alternativa.</p>
+                    <p>Uma vez criado, existem três formas de rejeitar a hipótese nula:</p>
                     <ul class="justified-list list-number">
-                        <li>Usando Estatística-T e Valor Crítico;</li> 
-                        <li>Usando P-valor e Nível de Significância;</li> 
-                        <li>Usando Intervalo de Confiança (CI) e Hipótese Nula</li>
+                        <li><a href="#metodo-um">Usando Estatística-T e Valor Crítico-T</a>;</li> 
+                        <li><a href="#metodo-dois">Usando P-valor e Nível de Significância</a>;</li> 
+                        <li><a href="#metodo-tres">Usando Intervalo de Confiança (CI) e Hipótese Nula</a></li>
                     </ul>
-                    <p>Vamos começar com a Estatística-T e Valor Crítico</p>
+                    <p>Todos os testes seguem o mesmo princípio, você precisa determinar o nível de significância (\(\alpha\)) do seu teste (1%, 5%, 10%...) e verificar se um número de referência é maior ou menor do que o outro para rejeitar a hipótese nula. Considerando o teste de hipótese acima (\(H_0: \beta_1 = 0\)), ao rejeitar a hipótese nula, você pode inferir que variavel explicativa (\(X_1\)) em questão provavelmente consegue explicar a variação na variavel dependete (\(Y\)) dentro da população.
+                    Caso contrário - ao <b>não</b> rejeitar a hipótese nula, podemos inferir que o modelo em questão provavelmente <b>não</b> consegue explicar a variação na variável dependente (\(Y\)) dentro da população.</p>
+                    <p>Vale ressaltar que todos os testes faram parte da sua primeira prova. Mas, vamos começar pelo tipo de teste mais utilizado:</p>
 
-                    <h4>1. Estatística-T e Valor Critico (\(t^*\))</h4>
-                    <p>Existem muitos “t”s em estatística, antes de começar a explicar a estatística-t gostaria de definir outros conceitos parecidos para que você não se confunda ao longo da leitura. “Estatística-T” ou “Estatística de Teste” <b>não</b> é a mesma coisa que “Distribuição T” ou “T-Student”. Preste atenção pois os dois conceitos serão usados neste teste de hipótese (1).</p>
+                    <h4 id="metodo-um">1. Estatística-T (\(|t|\)) e Valor Critico (\(t^*\))</h4>
+                    <p>Para rejeitar a hipótese nula nesse teste, a estatística-t em módulo (\(|t|\)) precisa ser <b>maior</b> do que o valor crítico-t (\(t^*\)) encontrado na tabela-t.</p>
+                    <p>Existem muitos “t”s em estatística (estatística-t, tabela-t, t-student, valor crítico-t...), para você entender esse tipo de teste, vamos precisar compreender a diferença entre esses "t"s:</p>
                     
                     <p><b>Valor Crítico (\(t^*\))</b></p>
                     <p>Distribuição-T também chamado de T-Student, é um tipo de distribuição parecida com a “normal” - também possui o formato de sino, porém com caldas mais largas (maior variabilidade). Ela é usada no lugar da normal quando a amostra é pequena e o desvio padrão da população é desconhecido (<b>pergunta de P1</b>) (a distribuição normal também é chamada de “distribuição-z”).</p>
-                    <p>Assumindo que estamos falando de uma amostra que obedece a uma distribuição t, podemos usar a tabela a seguir (tabela-t) para achar o valor crítico. Via de regra, vamos usar a distribuição t sempre que quisermos calcular a significância estatística dos coeficientes <b>individualmente</b>.</p>
-                    <p>Caso a estatística-t (conceito que vamos explicar a seguir) da amostra seja maior do que o valor crítico, podemos rejeitar a hipótese nula.</p>
-                    <p>(imagem da tabela-t)</p>
+                    <p>Assumindo que estamos falando de uma amostra que obedece a uma distribuição t, podemos usar a tabela a seguir (tabela-t) para achar o valor crítico. Via de regra, vamos usar a distribuição t sempre que quisermos calcular a significância estatística do coeficiente <b>individualmente</b>.</p>
+                    <p>(adicionar imagem da tabela-t)</p>
                     <ul class="justified-list">
                         <li>Para descobrir o calor crítico-t na tabela precisamos dos seguintes dados:</li>
                         <li>graus de liberdade (\( gl \)) (eixo y na imagem)</li>
                         <li>nível de significância (\( \alpha \)) e tipo de teste (uma calda ou duas caldas) (eixo x na imagem)</li>
                     </ul>
-                    <p>Graus de liberdade (\(gl\)) são diretamente relacionados ao tamanho da amostra que você possui, quanto maior o tamanho da amostra (n) mais a distribuição t se assemelha a distribuição normal. Para calcular os graus de liberdade é muito simples, precisamos subtrair o tamanho da amostra (n) do experimento pelo número de coeficientes do modelo de regressão (k) (incluindo o intercepto - \(\beta_0\)).</p>
+                    <p>Começando pelos graus de liberdade (\(gl\)), estes estão diretamente relacionados com o tamanho da amostra que você possui. Quanto maior o tamanho da amostra (\(n\)) mais a distribuição t se assemelha a distribuição normal (\(z\)) e maior será o \(gl\). Para calcular os graus de liberdade é muito simples, basta subtrair do tamanho da amostra (\(n\)) o número de coeficientes do modelo de regressão (\(k\)) (incluindo o intercepto - \(\beta_0\)). Observe a fórmula:</p>
                     <p>
                         $$
                             gl=n-k
@@ -158,15 +164,16 @@
                     </p>
                     <ul class="justified-list">
                         <li>Onde:</li>
-                        <li>\(gl\) = graus de liberdade (ou graus de liberdade dos resíduos);</li>
+                        <li>\(gl\) = graus de liberdade (ou graus de liberdade dos <b>resíduos</b>);</li>
                         <li>\(n\) = número de observações da amostra;</li>
                         <li>\(k\) = número de coeficientes/parâmetros do modelo (incluindo o intercepto).</li>
                     </ul>
-                    <p>Como estamos no modelo simples de regressão linear, “k” será sempre igual a 2. Logo, \(gl = n - 2\). Vale lembrar que, na maioria dos casos, o valor exato de \(gl\) não deve constar na tabela-t, nesse caso, você deve considerar o grau de liberdade mais próximo.</p>
-                    <p>Quando estudarmos os "SQs" (ainda nessa seção - resumo da P1), vamos observar que existe um "cara" chamado <b>SQR</b>. Também podemos usar os graus de liberdade (\(gl\)) do SQR para descobrir o número de observações da amostra (\(n\)) - apenas do SQR. Por exemplo, SQR possui \(18gl\), logo: \(n = gl + k = 18 + 2 = 20\). Você <b>NÃO</b> deve utilizar os graus de liberdade da regressão (SQE) para encontrar o "n".</p>
-                    <p>O próximo passo consiste em descobrir o eixo x da tabela-t, para isso precisamos descobrir o nível de significância (\( \alpha \)) do exercício, caso não seja informado, podemos considerar \( \alpha \) = 5% ou 0,05. Quando um pesquisador estabelece esse nível de significância, ele está dizendo que há uma chance de apenas 5% de rejeitar a hipótese nula quando ela é verdadeira (ou seja, quando o coeficiente populacional de fato é igual a zero).</p>
-                    <p>Obs: Na primeira prova, também não precisamos nos preocupar com falsos positivos e falsos negativos (erro do tipo I e erro do tipo II, respectivamente), por isso vamos explica-los no Resumo P2.</p>
-                    <p>Agora, só falta descobrir se estamos falando de um <b>teste de uma ou duas caldas</b>. Povão, isso é simples, se a hipótese alternativa for \(H_1:\beta_1<0\) ou \(H_1:\beta>0\) então esse é um teste <b>unicaudal</b>. Se a hipótese alternativa for \(H_1:\beta_1 \neq 0\) então esse teste é bicaudal. Quando estamos em um teste de duas caldas (maioria dos casos), precisamos dividir o nível de significância (\( \alpha \)) por dois (2) para encontrar o nível de significância na tabela-t. Logo, no nosso exemplo, vamos precisar dividir 0,05 por 2 (eixo x = 0,025).</p>
+                    <p>Como estamos no modelo simples de regressão linear, \(k\) será sempre igual a 2. Logo, \(gl = n - 2\).</p>
+                    <p>Quando estudarmos os "SQs" (ainda nessa seção - resumo da P1), vamos observar que existe um "cara" chamado <b>SQR</b>. O grau de liberdade do SQR (soma dos quadrados dos resíduos) corresponde ao grau de liberdade do exercício em questão. Logo, também podemos usar o grau de liberdade (\(gl\)) do SQR para descobrir o número de observações da amostra (\(n\)) - apenas do SQR. Por exemplo, se SQR possui \(18gl\), logo: \(n = gl + k = 18 + 2 = 20\). Você <b>NÃO</b> deve utilizar os graus de liberdade da regressão (SQE) para encontrar o "n".</p>
+                    <p>Vale lembrar que, na maioria dos casos, o valor exato de \(gl\) não deve constar na tabela-t, nesse caso, você deve considerar o grau de liberdade mais próximo.</p>
+                    <p>O próximo passo consiste em descobrir o eixo x da tabela-t - o nível de significância (\(\alpha\)). O nível de significância estabelece o rigor do seu teste, quanto menor o nível de significância (por exemplo: \(\alpha = 1%\) ), mais difícil será para você rejeitar a hipótese nula. Ou seja, você incorre no risco de não rejeitar a hipótese nula quando na realidade ela é falsa (não reflete a população do exercício). Em estatística, isso é chamado de erro do tipo II. Mas não se preocupe, os erros do tipo I e II não costumam cair nas provas. Só expliquei para você entender o que ele representa.</p>
+                    <p>Caso o nível de significância não seja informado no exercício, <b>sempre</b> considere \( \alpha \) = 5% ou 0,05. Quando um pesquisador estabelece esse nível de significância, ele está dizendo que há uma chance de 5% de rejeitar a hipótese nula quando ela é verdadeira. Ou seja, você reduz a chance de incorrer no erro do tipo II e aumenta a chance de cair no erro do tipo I - rejeitar a hipótese nula quando na realidade ela é verdadeira (descreve o comportamento da população).</p>
+                    <p>Agora, só resta descobrir se estamos falando de um <b>teste de uma ou duas caldas</b>. Povão, isso é simples, se a hipótese alternativa for \(H_1:\beta_1<0\) ou \(H_1:\beta>0\) então esse é um teste <b>unicaudal</b>. Se a hipótese alternativa for \(H_1:\beta_1 \neq 0\) então esse teste é bicaudal. Quando estamos em um teste de duas caldas (maioria dos casos), precisamos dividir o nível de significância (\( \alpha \)) por dois (2) para encontrar o nível de significância do eixo X na tabela-t. Logo, considerando o nosso teste de hipótese (duas caldas), vamos precisar dividir 0,05 por 2 para encontrar o eixo x da tabela-t: 0,025.</p>
                     <p>Agora, basta traçar uma linha reta entre o \(gl\) e nível de significância (\( \alpha \)) na tabela-t para encontrar o valor crítico (\(t^*\)).</p>
 
                     <p><b>Estatística-T ou T-valor (\(|t|\))</b></p>
@@ -174,7 +181,7 @@
                     <p>
                         $$
                             \begin{gather}
-                                t_{\beta_1}=\frac{\hat{\beta_1}-\beta_1}{SE} \\
+                                t_{\beta_1}=\frac{\hat{\beta_1}-\beta_1}{EP(\hat{\beta_1})} \\
                                 t_{\beta_1}=\frac{\hat{\beta_1}-\beta_1}{s}
                             \end{gather}
                         $$
@@ -184,91 +191,93 @@
                         <li>\(|t|\) = estatística t sempre em módulo;</li>
                         <li>\(\hat{\beta_1}\) = coeficiente amostral estimado (hipótese alternativa);</li>
                         <li>\(\beta_1\)= coeficiente populacional (hipótese nula);</li>
-                        <li>\(SE\) = standard error (erro padrão). Nesse contexto, pode ser definido como a diferença de uma estatística - o coeficiente \(\hat{\beta_1}\), no nosso exemplo, de uma amostra para a outra de uma mesma população dado a aleatoriedade da variabilidade das amostras. Quanto maior o tamanho da amostra e menor a variabilidade entre as observações da amostra, portanto, menor o erro padrão. Segue a fórmula do erro padrão: \(SE = \frac{s}{\sqrt{n}}\);</li>
+                        <li>\(EP(\hat{\beta_1})\) = erro padrão (em inglês, standard error) do estimador de \(\hat{\beta_1}\). Nesse contexto, pode ser definido como a diferença de uma estatística - o coeficiente \(\hat{\beta_1}\), no nosso exemplo, de uma amostra para a outra de uma mesma população dado a aleatoriedade da variabilidade das amostras. Quanto maior o tamanho da amostra e menor a variabilidade entre as observações da amostra, portanto, menor o erro padrão. Segue a fórmula do erro padrão: \(SE = \frac{s}{\sqrt{n}}\);</li>
                         <li>\(s\) = desvio padrão amostral. Nesse contexto, pode ser definido como a medida de dispersão dos coeficientes estimados das diferentes amostras da mesma população. Ou seja, o desvio padrão é uma medida de “dispersão” e o erro padrão é uma medida de “precisão”.</li>
                     </ul>
-                    <p>Se estamos usando a primeira fórmula, a estatística-t estabelece quantos erros padrão (SE) o coeficiente amostral estimado (\(\hat{\beta_1}\)) se distância do coeficiente populacional (\(\beta_1\)), porém, no nosso teste de hipótese, \(\beta_1=0\) (hipótese nula). Logo, quanto maior a diferença entre o estimador do coeficiente amostral (\(\hat{\beta_1}\)) e a hipótese nula e quanto menor o erro padrão (SE), maior será a estatística t, o que indica que a chance desse resultado ser um fruto do mero acaso é menor.</p>
+                    <p>Se estamos usando a primeira fórmula, a estatística-t estabelece quantos erros padrão (EP) o coeficiente amostral estimado (\(\hat{\beta_1}\)) se distância do coeficiente populacional (\(\beta_1\)), porém, no nosso teste de hipótese, \(\beta_1=0\) (hipótese nula). Logo, quanto maior a diferença entre o estimador do coeficiente amostral (\(\hat{\beta_1}\)) e a hipótese nula e quanto menor o erro padrão (EP), maior será a estatística t, o que indica que a chance desse resultado ser um fruto do mero acaso é menor.</p>
                     <p>Se estamos usando a segunda fórmula, a estatística-t estabelece quantos desvio padrão (s) o coeficiente amostral estimado (\(\hat{\beta_1}\)) se distância do coeficiente populacional (\(\beta_1\)), porém, no nosso teste de hipótese, \(\beta_1=0\) (hipótese nula). Logo, quanto maior a diferença entre o estimador do coeficiente amostral (\(\hat{\beta_1}\)) e a hipótese nula e quanto menor o desvio padrão (s), maior será a estatística t, o que indica que a chance desse resultado ser um fruto do mero acaso é menor.</p>
-                    <p>Voltando para a definição de estatística t, ambos os casos são validos, porém com interpretações ligeiramente diferentes. Normalmente, vamos usar o primeiro o caso (SE).</p>
-                    <p><b>Finalmente</b>, com a estatística t e o valor crítico, basta validar se a estatística t em <b>termos absolutos</b> (ex: |-2,534| = 2,534) do coeficiente amostral é maior do que o valor crítico obtido na tabela, se for o caso, você pode rejeitar a hipótese nula.</p>
+                    <p>Voltando para a definição de estatística t, ambos os casos são validos, porém com interpretações ligeiramente diferentes. Normalmente, vamos usar o primeiro o caso (EP).</p>
+                    <p><b>Finalmente</b>, com a estatística t e o valor crítico, basta validar se a estatística t em <b>termos absolutos</b> (ex: |-2,534| = 2,534) do coeficiente amostral é maior do que o valor crítico obtido na tabela, se for o caso, você pode rejeitar a hipótese nula e inferir que a sua hipótese alternativa possui significância estatística para descrever o comportamento populacional.</p>
                     <p>Agora, vamos resolver o mesmo problema usando o p-valor e nível de significância.</p>
                     
-                    <h4>2. P-valor e Nível de Significância (\(\alpha\))</h4>
-                    <p>P-valor representa uma probabilidade condicional (varia entre 0 a 1): dado que a hipótese nula é verdadeira, qual é a probabilidade do resultado amostral representar a população? Logo, se a hipótese nula for verdadeira, quanto menor o p-valor mais improvável será a observação do resultado da amostra. Um p-valor alto estaria confirmando a hipótese nula, em outras palavras, dado que a hipótese nula é verdade, esse resultado tem grande chance de ser observado na população. O p-valor ajuda pesquisadores a quantificar a força das suas evidências contra a hipótese nula. Se o p-valor for menor ou igual do que o nível de significância estabelecido pelo experimento (geralmente, 5%), podemos rejeitar a hipótese nula. Por exemplo, se o p-valor do estimador de um coeficiente (\(\hat{\beta_1}\)) for menor do que 0.0001 existe grande chance do seu coeficiente representar uma grande correlação com a variável explicativa - em outras palavras, rejeitar a hipótese nula (\(H_0:\beta_1=0\)).</p>
-                    <p>Caso ainda precise de mais detalhes sobre o p-valor, assista o vídeo a seguir:</p>
+                    <h4 id="metodo-dois">2. P-valor e Nível de Significância (\(\alpha\))</h4>
+                    <p>Para rejeitar a hipótese nula nesse teste, o p-valor precisa ser <b>menor</b> do que o nível de significância (\(\alpha\)) sugerido pelo exercício.</p>
+                    <p>Mas o que é o P-valor? Povão, esse conceito não é trivial, mas vou tentar explicar da forma mais simples possível. Primeiro, o "P" do p-valor vem da palavra "probabilidade". Ou seja, ele varia entre 0 e 1 (ou 0% e 100%). Para ser mais específico, o p-valor representa uma probabilidade <b>condicional</b>: dado que a hipótese nula é verdadeira, qual é a probabilidade do resultado amostral representar a população? Logo, se a hipótese nula for verdadeira, quanto menor o p-valor mais improvável será a observação do resultado da amostra. Um p-valor alto estaria confirmando a hipótese nula, em outras palavras, considerando o teste de hipótese em questão, um p-valor alto estaria dizendo que \( \hat{\beta_1} = \beta_1 = 0 \). Logo, com um p-valor alto você não tem motivos para rejeitar a hipótese nula, considerando a hipótese nula em questão (\(H_0:\beta_1=0\)).</p> 
+                    <p>O p-valor ajuda pesquisadores a quantificar a força das suas evidências contra a hipótese nula. Se o p-valor for <b>menor ou igual</b> do que o nível de significância estabelecido pelo experimento (geralmente, 5%), podemos rejeitar a hipótese nula. Por exemplo, se o p-valor do estimador de um coeficiente (\(\hat{\beta_1}\)) for menor do que 0.0001 existe grande chance do seu coeficiente representar uma grande correlação com a variável dependete \(Y\).</p>
+                    <p>Caso ainda tenha dúvidas sobre o p-valor, assista o vídeo a seguir:</p>
                     <iframe src="https://www.youtube.com/embed/z-HSsVARNnk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <p>Como podemos usar a estatística-t para encontrar o p-valor usando a tabela-t (<b>pergunta de P1</b>)?</p>
+                    <p>O p-valor do coeficiente normalmente é fornecido pelo próprio exercício. Porém, é possível que o professor peça para encontrar o p-valor a partir da estatística-t (\(|t|\)) (<b>pergunta de P1</b>).</p>
                     <ul class="justified-list">
-                        <li>Quando o p-valor não for fornecido, precisaremos encontrar o seu valor aproximado na tabela-t. Vamos considerar um exemplo com os seguintes dados:</li>
+                        <li>Para isso, vamos considerar um exemplo com os seguintes dados:</li>
                         <li>\(gl = n - k = 30 - 2 = 28\)</li>
-                        <li>estatística-t\((|t|) = \frac{\hat{\beta_1}-0}{SE(\hat{\beta_1})}=2,5\)</li>
+                        <li>estatística-t\((|t|)\) do coeficiente \(\hat{\beta_1}\) = 2,5</li>
                     </ul>
                     <ul class="justified-list">
                         <li>Resolução:</li>
-                        <li>Encontre a linha na tabela-t que corresponde aos graus de liberdade do exemplo (28). Caso a estatística-t seja muito alta, digamos 5, dificilmente a tabela-t conterá um valor crítico próximo a esse número dados os graus de liberdade (\(gl\)), portanto, você pode assumir que o p-valor é muito pequeno. Repare que os valores críticos a direita da coluna são maiores e estão associados a níveis de significância mais baixos;</li>
-                        <li>Nessa linha, encontre o(s) valor(es) crítico(s) mais próximo da estatística-t fornecida (2,5);</li>
-                        <li>Feito isso, basta observar o nível de significância dessa coluna;</li>
-                        <li>Agora, precisamos analisar o teste de hipótese, caso o teste de hipótese possua duas caldas, multiplique o valor encontrado no começo da coluna por 2, caso contrário, multiplique por 1. Esse é o valor aproximado do p-valor.</li>
+                        <li>Encontre a linha na tabela-t que corresponde aos graus de liberdade do exemplo (28);</li>
+                        <li>Nessa linha, encontre o(s) valor(es) crítico(s) \(t^*\) mais próximo(s) da estatística-t fornecida (2,5);</li>
+                        <li>Feito isso, basta observar o nível de significância dessa coluna. Esse é o p-valor do coeficiente \(\hat{\beta_1}\), considerando um teste de hipótese e um eixo x da tabela-t bilateral (com duas caldas);</li>
+                        <li>Por fim, basta considerar a(s) calda(s) do seu teste de hipótese e a forma como a tabela-t foi construida. Se o seu teste de hipótese é bilateral (com duas caldas) e o eixo x da tabela-t também leva em conta as duas caldas, você não precisa fazer mais nada, o valor encontrado na coluna, no passo anterior, é o seu p-valor. Porém, caso o teste de hipótese seja unilateral (possui uma calda) e o eixo x da tabela-t está considerando duas caldas, você precisa dividir o valor da coluna do passo anterior por 2 para encontrar o p-valor.</li>
                     </ul>
+                    <p>Com o p-valor em mãos, basta avaliar se ele é <b>menor</b> do que o nível de significância proposto pelo exercício, se for o caso, você pode rejeitar a hipótese nula.</p>
                     
-                    <h4>3. Intervalo de Confiança (CI) e Hipótese Nula (\(H_0\))</h4>
+                    <h4 id="metodo-tres">3. Intervalo de Confiança (CI) e Hipótese Nula (\(H_0\))</h4>
+                    <p>Para rejeitar a hipótese nula nesse teste, a hipótese nula (\(\beta_1\)) precisa estar fora do intervalo de confiança (CI) encontrado no exercício.</p>
                     <p>O intervalo de confiança (CI) estabelece o intervalo em que a hipótese nula de \(\beta_1\) deve estar para que seja aceita, dado o nível de significância estabelecido pelo exercício (normalmente, \(\alpha = 0,05\)). Como em nosso exemplo a hipótese nula será: \(H_0:{\beta_1}=0\), caso o intervalo de confiança (CI) não contenha 0 (zero), podemos rejeitar a hipótese nula.</p>
                     <p>CI pode ser calculado usando a seguinte fórmula:</p>
                     <p>
                         $$
-                            CI = \hat{\beta_1} \pm t^* * SE(\hat{\beta_1})
+                            CI = \hat{\beta_1} \pm t^* * EP(\hat{\beta_1})
                         $$
                     </p>
                     <ul class="justified-list">
                         <li>Onde:</li>
                         <li>\(\hat{\beta_1}\) = estimador do coeficiente de inclinação do modelo de regressão;</li>
                         <li>\(t^*\) = valor crítico t obtido na tabela-t;</li>
-                        <li>\(SE(\hat{\beta_1})\) = erro padrão do estimador do coeficiente de inclinação do modelo de regressão.</li>
+                        <li>\(EP(\hat{\beta_1})\) = erro padrão do estimador do coeficiente de inclinação do modelo de regressão.</li>
                     </ul>
                     <ul class="justified-list">
-                        <li>Vamos fazer um <b>exemplo</b> com os seguintes dados:</li>
+                        <li>Vamos fazer um exemplo com os seguintes dados:</li>
+                        <li>Considere o teste de hipótese clássico;</li>
                         <li>Estimador do coeficiente angular (\(\hat{\beta_1}\)) = 2,5</li>
-                        <li>Erro padrão do estimador do coeficiente angular (\(SE(\hat{\beta_1})\)) = 0,5</li>
+                        <li>Erro padrão do estimador do coeficiente angular (\(EP(\hat{\beta_1})\)) = 0,5</li>
                         <li>Tamanho da amostra (n) = 30</li>
-                        <li>"k" = 2;</li>
-                        <li>O nível de significancia não foi informado, logo, vamos considerar \( \alpha = 0,05 \).</li>
+                        <li>\(k\) = 2;</li>
+                        <li>E vamos considerar que o nível de significancia não foi informado, logo, vamos usar \( \alpha = 0,05 \).</li>
                     </ul>
                     <ul class="justified-list">
                         <li>Resolução:</li>
-                        <li>Com isso, podemos calcular o valor crítico na tabela-t:
-                        Para o nível de significância de 5% (como ele não foi informado, podemos assumir \(\alpha=5\%\)) e graus de liberdade \(gl = n - k = 30 - 2 = 28\), o valor crítico (\(t^*\)) na tabela-t seria de 2,048.</li>
+                        <li>Com isso, vamos começar calculando o valor crítico (\(t^*\)) na tabela-t:
+                        Para o nível de significância de 5% e graus de liberdade \(gl = n - k = 30 - 2 = 28\), o valor crítico (\(t^*\)) na tabela-t seria de 2,048.</li>
                         <li>Agora, basta substituir na fórmula:
                             $$
                             \begin{gather}
-                                CI = \hat{\beta_1} \pm t^* * SE(\hat{\beta_1}) \\
+                                CI = \hat{\beta_1} \pm t^* * EP(\hat{\beta_1}) \\
                                 CI = 2,5 \pm 2,048*0,5 \\
                                 CI = 2,5 \pm 1,024 \\
                                 CI = (1,476; 3,524)
                             \end{gather}
                             $$
                         </li>
+                        <li>Portanto, à um nível de significância de 5%, o intervalo de confiança de \(\beta_1\) é (1,476 ; 3,524).</li>
                     </ul>
-                    <ul class="justified-list">
-                        <li>Interpretação:</li>
-                        <li>Para o nível de significância de 5%, o intervalo de confiança de \(\beta_1\) é (1,476 ; 3,524);</li>
-                        <li>Como o intervalo não contém zero (hipótese nula), podemos rejeitar a hipótese nula \(H_0:{\beta_1}=0\) ao nível de significância de 5%;</li>
-                        <li>Isso indica que o \(\beta_1\) é significativamente diferente de zero, sugerindo que a relação entre a variável explicativa (\(X_1\)), associada a \(\beta_1\), e a variável dependente (\(Y\)) possui significância estatística.</li>
-                    </ul>
+                    <p>Como o intervalo não contém zero (hipótese nula no nosso teste de hipótese), podemos rejeitar a hipótese nula \(H_0:{\beta_1}=0\) ao nível de significância de 5%. Isso indica que o \(\beta_1\) é significativamente diferente de zero, sugerindo que a relação entre a variável explicativa (\(X_1\)) e a variável dependente (\(Y\)) possui significância estatística.</p>
                 </section>
 
                 <section id="qualidade-modelo">
                     <h3>Qualidade do Modelo de Regressão Simples</h3>
-                    <p>Ta beleza, povão? (Se tiver achado alguma parte confusa, envie um <a href="#introducao">e-mail</a> para gente)</p>
-                    <p>Nesta seção vamos explicar como podemos avaliar a qualidade do modelo de regressão. Preste atenção pois essa matéria também faz parte daqueles “70%” da P1.</p>
+                    <p>Ta beleza, povão?</p>
+                    <p>Nesta seção vamos explicar como podemos avaliar a qualidade do modelo de regressão. Ou seja, quão bem a variavel explicativa selecionada (\(X_1\)) pelo pesquisador consegue explicar a variação na variavel dependente (\(Y\))?</p> 
+                    <p>Preste atenção pois essa matéria também faz parte daqueles “70%” da P1.</p>
                     <p>Vamos começar explicando o coeficiente de determinação (\(R^2\)):</p>
 
                     <h4>Coeficiente de Determinação (\(R^2\))</h4>
-                    <p>O coeficiente de determinação mensura quão bem a variável independente (X) explica a variação na variável dependente (Y), dentro de uma determinada <b>amostra</b> (esse detalhe é importante para entender a estatística F). Essa estatística indica a proporção da variação na variável dependente (Y) que é explicada pela variável explicativa (X). Seu valor varia entre 0 e 1. 0 indica que a variável explicativa (X) não explica a variação na variável dependente (Y), e 1.</p>
+                    <p>O coeficiente de determinação mensura quão bem a variável independente (\(X_1\)) explica a variação na variável dependente (\(Y\)), dentro de uma determinada <b>amostra</b>. Essa estatística indica a proporção da variação na variável dependente (\(Y\)) que é explicada pela variação na variável explicativa (\(X_1\)). Seu valor também varia entre 0 e 1 (ou, 0% e 100%). Zero (0) indica que a variável explicativa (\(X_1\)) não explica a variação na variável dependente (\(Y\)), um (1) por sua vez, quer dizer que toda a variação de \(Y\) é explicada pela variação na varivel independente \(X_1\).</p>
                     <p>O \(R^2\) é medido dentro do contexto da amostra, ou seja, amostras diferentes da mesma população podem resultar em coeficientes de determinação diferentes, mas servem como estimadores do \(R^2\) populacional. Quanto maior o R ao quadrado, mais o modelo de regressão simples consegue explicar o que acontece com a variável dependente dentro da população.</p>
                     <p>Nesse caso, como estamos falando de um modelo de regressão simples - com uma unica variável explicativa, o coeficiente de determinação (\(R^2\)) servirá bem esse propósito. Por sua vez, existem uma situção em que o coeficiente de determinação não é recomendado:</p>
                     <p>Quando queremos comparar a qualidade de dois modelos de regressão com quantidades diferentes de variaveis explicativas (X), como por exemplo, um modelo de regressão simples e um modelo de regressão múltiplo.</p>
-                    <p>Isso acontece pois sempre que aumentamos o número de variaveis explicativas (k), o \(R^2\) será positivamente impactado, mesmo que as variaveis explicativas (X) adicionadas não ajudem a explicar a variação da variável dependente (Y).</p>
-                    <p>Obs: Na P1, não precisamos “ajustar” o coeficiente de determinação. Vamos “ajustar” o R ao quadrado pela “quantidade de variaveis explicativas” (ou k) na seção de Resumo P2.</p>
+                    <p>Isso acontece pois sempre que aumentamos o número de variaveis explicativas (\(k\)), o \(R^2\) será positivamente impactado, mesmo que as variaveis explicativas (\(X\)) adicionadas não ajudem a explicar a variação da variável dependente (\(Y\)).</p>
+                    <p>Obs: Na P1, não precisamos “ajustar” o coeficiente de determinação. Vamos “ajustar” o \(R^2\) pela quantidade de variaveis explicativas (\(k\)) na seção de Resumo P2.</p>
                     <p>Segue a fórmula de calculo do \(R^2\):</p>
                     <p>
                         $$
@@ -281,21 +290,23 @@
                     <ul class="justified-list">
                         <li>Onde:</li>
                         <li>\(R^2\) = coeficiente de determinação;</li>
-                        <li>\(SQT\) = soma total dos quadrados da variável dependente (y) (SST em inglês) - soma da diferença entre o valor observado de y e a sua média amostral \(\bar{y}\) ao quadrado;</li>
+                        <li>\(SQT\) = soma total dos quadrados da variável dependente (\(y\)) (SST em inglês) - soma da diferença entre o valor observado de \(y\) e a sua média amostral \(\bar{y}\) ao quadrado;</li>
                         <li>\(SQE\) = soma dos quadrados <b>explicados</b> pelo modelo de regressão (SSR em inglês) - soma da diferença entre o valor estimado pelo modelo de regressão \(\hat{y}\) para aquela observação e a média amostral \(\bar{y}\) ao quadrado;</li>
                         <li>\(SQR\) = soma dos quadrados dos <b>resíduos</b> da variável dependente (y) ou soma dos quadrados dos erros (SSE em inglês) - soma da diferença entre o valor observado de y e o valor estimado pelo modelo \(\hat{y}\) ao quadrado.</li>
                     </ul>
                     <p>A fórmula é simples, porém, o que essa razão representa na prática?</p>
-                    <p>O SQR representa a variabilidade de Y que não pode ser explicada pelas variáveis explicativas do modelo - o residual (u), portanto, quanto maior o SQR relativamente ao SQT, maior será a proporção da variação da variável dependente (Y) que <b>não</b> pode ser explicada pelo modelo de regressão. Essa razão “menos 1” fornece quanto a variabilidade total da variável dependente (Y) é explicada pelas variaveis explicativas do modelo.</p>
+                    <p>O SQR representa a variabilidade de \(Y\) que não pode ser explicada pelas variáveis explicativas do modelo. Ou seja, o residual (u). Portanto, quanto maior o SQR relativamente ao SQT, maior será a proporção da variação da variável dependente (\(Y\)) que <b>não</b> pode ser explicada pelo modelo de regressão. Essa razão menos 1 informa, em termos percentuais, a variação de \(Y\) que é explicada pelo modelo.</p>
                     <p>Vamos aproveitar para entender os conceitos adjacentes a \(R^2\), os “SQs”.</p>
 
                     <h4>Decomposição da Soma Total dos Quadrados (”SQs”)</h4>
                     <p>No contexto do modelo de regressão, os “SQs” são um conjunto de estatísticas que ajudam a medir a efetividade do modelo de regressão. Sempre serão calculados com base nas observações das variaveis dependentes (\(y\)) da amostra.</p>
             
-                    <p>A fórmula do Coeficiente de Determinação (\(R^2\)) está intimamente ligada ao SQT, portanto, os dois possuem interpretações parecidas. Porém, diferente do \(R^2\) que está preocupado em explicar a proporção da variável dependente que é explicada pelo modelo de regressão, o SQT está preocupado em determinar a variação total da variável dependente (y) que precisa ser explicada pelo modelo de regressão. Como você pode ver na fórmula abaixo, o SQT pode ser calculado pela soma de SQE e SQR, onde SQE representa a variação que pode ser explicada pelo modelo de regressão e SQR representa a parte que não pode ser explicada pelo modelo - o residual (u).</p>
+                    <p>A fórmula do Coeficiente de Determinação (\(R^2\)) está intimamente ligada ao SQT, portanto, os dois possuem interpretações parecidas. Porém, diferente do \(R^2\) que está preocupado em explicar a proporção da variável dependente que é explicada pelo modelo de regressão, o SQT está preocupado em determinar a variação total da variável dependente (\(y\)) que precisa ser explicada pelo modelo de regressão. Como você pode ver na fórmula abaixo, o SQT pode ser calculado pela soma de SQE e SQR, onde SQE representa a variação que pode ser explicada pelo modelo de regressão e SQR representa a parte que não pode ser explicada pelo modelo - o residual (u).</p>
                     <p>
                         $$
+                        \begin{gather}
                             SQT=SQE+SQR
+                        \end{gather}
                         $$
                     </p>
                     <ul class="justified-list">
@@ -304,7 +315,9 @@
                         <p>Se por acaso for necessário calcular o SQT usando as observações da amostra (isso não costuma acontecer), sem usar a fórmula acima, ela pode ser calculado pela soma da diferença das variaveis dependentes (\(y\)) em relação a sua média (\(\bar{y}\)) elevado ao quadrado:</p>
                         <p>
                             $$
+                            \begin{gather}
                                 SQT = \sum^n_{i=1}(y_i-\bar{y})^2
+                            \end{gather}
                             $$
                         </p>
                         <p>Logo, quanto maior o SQT, maior a variabilidade da amostra em relação a média. Portanto, o SQT pode variar de 0 (zero) a mais infinito. </p>
@@ -314,22 +327,111 @@
                         <p>Quantifica quanto da variação total de \(y\) é capturada pelo modelo de regressão.</p>
                         <p>
                             $$
+                            \begin{gather}
                                 SQE=\sum^n_{i=1}(\hat{y}_i - \bar{y})^2
+                            \end{gather}
                             $$
                         </p>
                         <p>Um SQE maior relativo ao SQT sugere um modelo mais ajustado. Talvez você não tenha entendido o valor de \(\hat{y}_i\), mas ele é calculado para cada linha da sua tabela (amostra) usando o valor de \(x_1\) e o modelo de regressão criado: \(\hat{y}_i=\beta_0+\beta_1x_i\).</p>
-                        <p>A distância de cada ponto de dados da linha do modelo de regressão representa a variação que não é explicada pelo modelo - o residual (SQR).</p>
+                        <p>A distância da linha de regressão e a linha de média representa a variação que é explicada pelo modelo (SQE).</p>
+                        
 
                         <li>Soma dos Quadrados dos Resíduos (SQR)</li>
                         <p>Quantifica a variabilidade total de \(y\) que não é explicada pelo modelo de regressão.</p>
                         <p>
                             $$
+                            \begin{gather}
                                 SQR=\sum^n_{i=1}(y_i-\hat{y}_i)^2
+                            \end{gather}
                             $$
                         </p>
-                        <p>Um SQR maior sugere um encaixe <b>menor</b> do modelo de regressão com os dados da amostra. Repare que, ao <b>não</b> rejeitar a hipótese nula: \(SQT = SQR\) (importante na P2).</p>
-                        <p>A distância da linha de regressão e a linha de média representa a variação que é explicada pelo modelo (SQE).</p>
+                        <p>Um SQR maior sugere um encaixe <b>menor</b> do modelo de regressão com os dados da amostra.</p>
+                        <p>A distância de cada ponto de dados da linha do modelo de regressão representa a variação que não é explicada pelo modelo - o residual (SQR).</p>
+                        <p>Além disso, precisamos fazer duas observações sobre o SQR:</p>
+                        <p>(1) Considerando o nosso testde de hipótese clássico, onde \(H_0: \beta_1 = 0 \), ao <b>não</b> rejeitar a hipótese nula podemos dizer que SQT = SQR.</p>
+                        <p>(2) A segunda observação é um lembrete do que foi dito na seção sobre os graus de liberdade (\(gl\)). O grau de liberdade dos resíduos (SQR) corresponde ao grau de liberdade do exercício. Logo, você pode usa-lo para descobrir o valor de \(n\).</p>
                     </ul>
+                </section>
+
+                <section id="conclusao-p1">
+                    <h3>Fórmulas P1</h3>
+                    <p>Fechado, povão? Esses são os "70%" da P1.</p>
+                    <p>Sabendo aplicar as fórmulas a seguir você deve conseguir fazer a primeira prova:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fórmula</th>
+                                <th>Estatística</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>\(\alpha\)</p>
+                                </td>
+                                <td>
+                                    <p><b>Nível de significância</b>. Utilizado em testes de hipótese. Se não informado pelo exercício, considere 5%.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>\(gl = n - 2\)</p>
+                                </td>
+                                <td>
+                                    <p><b>Grau de Liberdade dos Resíduos (gl.)</b>. Utilizado para descobrir o valor crítico na tabela-t. Considere \(n\) igual ao tamanho da amostra.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Tabela-T ou T-Student</p>
+                                </td>
+                                <td>
+                                    <p><b>Valor Crítico-T \(t^*\)</b>. Usada em testes de hipótese e no calculo do intervalo de confiança (CI).</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>\(|t_{\beta_1}|=\frac{\hat{\beta_1}-\beta_1}{EP_{\beta_1}}\)</p>
+                                </td>
+                                <td>
+                                    <p><b>Estatística-T \(|t|\)</b>. Utilizada em testes de hipótese. Caso seja <b>maior</b> do que o valor crítico (\(t^*\)), podemos rejeitar a hipótese nula. Também pode ser usada para encontrar o p-valor na tabela-t.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>P-valor</p>
+                                </td>
+                                <td>
+                                    <p><b>P-valor</b>. Utilizado em testes de hipótese. Caso seja <b>menor</b> do que o nível de significância (\(\alpha\)), podemos rejeitar a hipótese nula.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>\(CI = \hat{\beta_1} \pm t^* * EP(\hat{\beta_1})\)</p>
+                                </td>
+                                <td>
+                                    <p><b>Intervalo de Confiança (CI)</b>. Usado em testes de hipótese. Se a hipótese nula <b>não</b> estiver dentro do intervalo, podemos rejeitar a hipótese nula.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>\(SQT=SQE+SQR\)</p>
+                                </td>
+                                <td>
+                                    <p><b>Soma Total dos Quadrados (SQT)</b>. Utilizado para calcular o \(R^2\).</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>\( R^2=\frac{SQE}{SQT} \\
+                                        R^2=1-\frac{SQR}{SQT} \)</p>
+                                </td>
+                                <td>
+                                    <p><b>R2</b>. Utilizado para medir a variação de \(Y\) explicada pelo modelo, em termos percentuais.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </section>
             </section>
 
@@ -345,7 +447,9 @@
                     <p>Considere a regressão: </p>
                     <p>
                         $$
+                        \begin{gather}
                             Y_t = \beta_0 + \beta_1X_t + u_t
+                        \end{gather}
                         $$
                     </p>
                     <p>Caso seja do nosso interesse testar a significância estatística de Xt, aplicamos o seguinte teste:</p>
@@ -397,7 +501,9 @@
                     <p>O modelo restrito (MR) será sempre a hipótese nula. Nesse exemplo, MR seria:</p>
                     <p>
                         $$
+                        \begin{gather}
                             H_0: Y_t = \beta_0 + \beta_1X_{t1} + \beta_2X_{t2} + u_t
+                        \end{gather}
                         $$
                     </p>
                     <p>O modelo irrestrito (MI) será sempre a hipótese alternativa. Nesse exemplo MI seria:</p>
@@ -418,7 +524,9 @@
                     <p>Considerando X ~ N(0,1)  e X2 ~ X2n (qui-quadrado com n graus de liberdade), e que X e Y são independentes, é possível dizer que:</p>
                     <p>
                         $$
+                        \begin{gather}
                             t^2 = (\frac{X_1}{\square\frac{X_2}{n}})^2 = \frac{X_1^2}{\frac{X_2}{n}} = \frac{\frac{X_1^2}{1}}{\frac{X_2}{n}} ~ F_{1,n}
+                        \end{gather}
                         $$
                     </p>
                     <p>Entretanto essa forma de se chegar à estatística F é bastante restrita, sendo útil apenas para um caso específico. Nessa seção iremos mostrar mais duas formas mais gerais de se chegar à estatística F.</p>
@@ -455,7 +563,9 @@
                     <p>Para resolver esse problema existe o <b>\(R^2\) ajustado (\(\bar{R^2}\))</b>, iremos brevemente destacar algumas de suas características. Observe a fórmula a seguir:</p>
                     <p>
                         $$
+                        \begin{gather}
                             \bar{R^2} = 1 - (1 - R^2)\frac{n-1}{n-k}
+                        \end{gather}
                         $$
                     </p>
                     <ul class="justified-list list-number">
@@ -470,7 +580,9 @@
                     <p>Considere a regressão abaixo:</p>
                     <p>
                         $$
+                        \begin{gather}
                             Y_t = \beta_0 + \beta_1D_{1t} + \beta_2D_{2t} + \beta_3X_t
+                        \end{gather}
                         $$
                     </p>
                     <ul class="justified-list">
@@ -484,7 +596,9 @@
                     <p>Digamos que a regressão acima, ao ser estimada, tenha o seguinte resultado:</p>
                     <p>
                         $$
+                        \begin{gather}
                             Y_t = 0,5 - 3D_{1t} + 1D_{2t} + 0,5X_t
+                        \end{gather}
                         $$
                     </p>
                     <p>O que podemos dizer a partir do resultado acima?</p>
@@ -494,7 +608,12 @@
                     <p>\(D_{2t}\): Pode-se dizer, considerando o sinal positivo e sem olhar a significância estatística da estimação, que alunos que não utilizam lápis tendem a ter resultados melhores na prova (são mais confiantes talvez?).</p>
                     <p>Essa análise seria uma primeira etapa, agora para concluir vamos olhar para a significância estatística dos parâmetros estimados para as variáveis binárias (nível de significância de 5%).</p>
                         <table>
-                            <thead><tr><th>Parâmetro</th>	<th>P-Valor</th></tr></thead>
+                            <thead>
+                                <tr>
+                                    <th>Parâmetro</th>	
+                                    <th>P-Valor</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 <tr><td>B1</td>	<td><0,001</td></tr>
                                 <tr><td>B2</td>	<td>0,2</td></tr>
@@ -518,12 +637,13 @@
                     <li>João Gabriel G. Martins</li>
                     <li><i class="fas fa-envelope"></i> Me envie um <a href="mailto:jggmartins@id.uff.br;joaostrauss@id.uff.br?subject=Site%20de%20Econometria%20I">E-mail</a></li>
                     <li><i class="fab fa-linkedin"></i> Acesse meu <a href="https://www.linkedin.com/in/joao-gabriel-martins/" target="_blank">Linkedin</a></a></li>
+                    <li><i class="fa-brands fa-youtube"></i> Acesse meu canal no <a href="https://www.youtube.com/@desenvolvimento-de-produto/videos" target="_blank">YouTube</a></li>
                 </ul>
                 <ul class="contact-dev">
                     <li>Monitor do Curso</li>
                     <li>João Strauss</li>
                     <li><i class="fas fa-envelope"></i> Me envie um <a href="mailto:joaostrauss@id.uff.br;jggmartins@id.uff.br?subject=Site%20de%20Econometria%20I" target="_blank">E-mail</a> </li>
-                    <li><i class="fab fa-linkedin"></i> Acesse meu <a href="https://www.linkedin.com/in/joão-manoel-strauss-011706309/" target="_blank">Linkedin</a></li>
+                    <!-- <li><i class="fab fa-linkedin"></i> Acesse meu <a href="https://www.linkedin.com/in/joão-manoel-strauss-011706309/" target="_blank">Linkedin</a></li> -->
                 </ul>
                 <ul class="contact-dev">
                     <li>Professor do Curso</li>

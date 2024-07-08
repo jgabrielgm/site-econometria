@@ -1,7 +1,15 @@
 document.addEventListener("DOMContentLoaded", function() {
     // forces to scroll to the top of the website every time it loads
-    // document.documentElement.scrollTop = 0; // For most browsers
-    // document.body.scrollTop = 0; // Safari
+    document.documentElement.scrollTop = 0; // For most browsers
+    document.body.scrollTop = 0; // Safari
+
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: "\\(", right: "\\)", display: false},
+            {left: "$$", right: "$$", display: true}
+        ],
+        leqno: false // Disable line numbering (ou deveria)
+    });
 
     var menuItems = document.querySelectorAll('.menu-item');
     menuItems.forEach( function(item) {
@@ -70,8 +78,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function setActiveMenu() {
         let center_position = getCenterPosition();
-        var main_sections = document.querySelectorAll('main > section');
-        main_sections.forEach( function(item) {
+        var main_sections = Array.from(document.querySelectorAll('main > section'));
+        let sections_except_intro = main_sections.slice(1);
+        sections_except_intro.forEach( function(item) {
             let rect = getElementPosition(item);
             let hrefId = item.id;
             let a_link = document.querySelector(`a[href="#${hrefId}"]`);
