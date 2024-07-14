@@ -1,0 +1,10 @@
+# Especifica as regras para bot da Google (mais importante)
+User-agent: Googlebot
+Allow: /templates/
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /templates/
+Disallow:
+
+Sitemap: https://jgabrielgm.github.io/site-econometria/sitemap.xml
