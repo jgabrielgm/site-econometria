@@ -1,7 +1,3 @@
-# Especifica as regras para bot da Google (mais importante)
-User-agent: Googlebot
-Disallow: /nogooglebot/
-
 User-agent: *
 Disallow:
 
