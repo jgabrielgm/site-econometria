@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Econometria I</title>
-    <link rel="stylesheet" href="..\static\styles.css">
+    <link rel="stylesheet" href="..\styles.css">
     <!-- google tag manager -->
     <!-- Google Tag Manager -->
     <script>
@@ -567,10 +567,10 @@
                     <p>Dica para achar \(R^2\) e \(SQR\): o \(SQT\) do modelo restrito e irrestrito <b>não</b> mudam. Logo, você pode usa-lo para chegar ao \(SQR\) e, consequentemente, ao \(R^2\).</p>
                     <p>Com as duas fórmulas acima conseguimos calcular a estatística F, processo que ficará mais claro na seção de exemplos práticos. Por fim é importante ressaltar como funciona o processo de aceitação ou rejeição de hipóteses com a F.</p>
                     <p>Como já foi dito nos parágrafos acima, a estatística F vai ser utilizada na realização de testes sobre a significância conjunta das variáveis explicativas, ou seja, sobre o quão relevantes algumas variáveis de fato são para o modelo. O método de se fazer isso, essencialmente, não é diferente do que já estamos acostumados. Vamos precisar de algumas coisas: 1. A distribuição F, 2. Nível de significância, 3. Nossa estatística F. Simples!</p>
-                    <img src="..\static\img\distribuicao-f.png" alt="gráfico da distribuicao-f">
+                    <img src="..\img\distribuicao-f.png" alt="gráfico da distribuicao-f">
                     <p>A estatística F, diferente da t e normal, possui apenas valores positivos (ver gráfico acima), tendo em vista que, por definição, é a razão de duas qui-quadrado. Dessa forma não é necessário dividir o alpha (grau de significância) por 2, podemos concentrar tudo num lado só.</p>
                     <p>Por último, a F possui 2 graus de Liberdade (Fgrau 1, grau 2), o resulta em uma tabela inédita. Teremos tabelas diferentes para cada grau de significância (1%,2,5%,5%,10%...), assim sendo possível incluirmos na tabela os dois graus de liberdade (um na linha e outro na coluna). Segue exemplo abaixo,</p>
-                    <img src="..\static\img\tabela-f.jpg" alt="tabela-f">
+                    <img src="..\img\tabela-f.jpg" alt="tabela-f">
                 </section>
                 
                 <section id="r2-ajustado">
@@ -608,7 +608,7 @@
                         <li>\(D_{2t}\) = Variável binária (dummy) que assume valor 1 caso o estudante faça a prova de lápis e 0 caso contrário;</li>
                         <li>\(X_t\) = Número de horas estudadas (não é uma dummy).</li>
                     </ul>
-                    <p> Note que as variáveis dummy são essas que assumem apenas dois valores (1 ou 0), elas buscam captar possíveis diferenças entre uma determinada amostra e a <b>categoria-base</b>. Qual é a categoria-base desse modelo? (<b>pergunta de P2</b>) Boa pergunta, nesse caso, a categoria base seria a pessoa que leva mais uma hora para fazer a prova (\(D_{1t} = 0\)) e faz a prova a caneta (\(D_{2t} = 0\)). O valor esperado para categoria-base é o intercepto (\(\beta_0\)).</p>
+                    <p>Note que as variáveis dummy são essas que assumem apenas dois valores (1 ou 0), elas buscam captar possíveis diferenças entre uma determinada amostra e a <b>categoria-base</b>. Qual é a categoria-base desse modelo? (<b>pergunta de P2</b>) Boa pergunta, nesse caso, a categoria base seria a pessoa que leva mais uma hora para fazer a prova (\(D_{1t} = 0\)) e faz a prova a caneta (\(D_{2t} = 0\)). O valor esperado para categoria-base é o intercepto (\(\beta_0\)).</p>
                     <p>Digamos que a regressão acima, ao ser estimada, tenha o seguinte resultado:</p>
                     <p>
                         $$
@@ -670,6 +670,6 @@
             </div>
         </div>
       </footer>
-    <script src="..\static\script.js"></script>
+    <script src="..\script.js"></script>
 </body>
 </html>
